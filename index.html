@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pixelsnfiles — go from absolute beginner to hired</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soft-butter:#F4E4B8;
+    --atlantic:#2F4A6B;
+    --denim:#4F6B8A;
+    --whipped:#F8EFD8;
+    --powder:#D7DEE8;
+    --classic-navy:#1B3559;
+    --honeycomb:#E8B775;
+    --white:#FFFDF7;
+
+    --display:'Cormorant Garamond', Georgia, serif;
+    --body:'Poppins', system-ui, sans-serif;
+    --maxw:1180px;
+    --gutter:clamp(20px,5vw,64px);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--soft-butter);
+    color:var(--atlantic);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+  section{position:relative}
+
+  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.04;letter-spacing:-.01em;color:var(--atlantic)}
+  .eyebrow{font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--denim)}
+  .accent{color:var(--honeycomb)}
+  .center{text-align:center}
+
+  .wordmark{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;color:var(--atlantic);text-decoration:none;display:inline-block}
+
+  .btn{font-family:var(--body);font-weight:500;font-size:14px;border:none;cursor:pointer;padding:14px 28px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:transform .25s,background .25s,color .25s,box-shadow .25s}
+  .btn-primary{background:var(--atlantic);color:var(--white)}
+  .btn-primary:hover{background:var(--classic-navy);transform:translateY(-2px);box-shadow:0 14px 32px -14px rgba(27,53,89,.55)}
+  .btn-outline{background:transparent;color:var(--atlantic);border:1.5px solid var(--atlantic)}
+  .btn-outline:hover{background:var(--atlantic);color:var(--white);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--atlantic);padding-left:0}
+  .btn-ghost .arrow{transition:transform .25s}
+  .btn-ghost:hover .arrow{transform:translateX(5px)}
+  .on-navy .btn-outline{color:var(--whipped);border-color:rgba(248,239,216,.5)}
+  .on-navy .btn-outline:hover{background:var(--whipped);color:var(--classic-navy)}
+
+  .blob{position:absolute;border-radius:47% 53% 63% 37%/42% 50% 50% 58%;z-index:0;pointer-events:none}
+  .flower{position:absolute;z-index:2;pointer-events:none}
+
+  .photo{border-radius:16px;background:linear-gradient(140deg,var(--powder),var(--whipped));position:relative;overflow:hidden;box-shadow:0 20px 44px -24px rgba(27,53,89,.45);border:5px solid var(--white)}
+  .photo::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--denim);opacity:.65}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo img.fit-top{object-position:top center}
+
+  nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);background:rgba(244,228,184,.82);border-bottom:1px solid rgba(79,107,138,.16)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-inner .wordmark{font-size:21px}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:13.5px;color:var(--atlantic);text-decoration:none;position:relative}
+  .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:var(--honeycomb);transition:width .28s}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .nav-links .btn{padding:10px 20px;font-size:13px}
+  .menu-btn{display:none;background:none;border:none;font-family:var(--body);font-size:14px;color:var(--atlantic);cursor:pointer}
+
+  .hero{padding:clamp(48px,7vw,90px) 0 clamp(56px,8vw,100px);text-align:center;overflow:hidden}
+  .hero .eyebrow{margin-bottom:22px}
+  .hero h1{font-size:clamp(52px,9vw,108px);margin-bottom:8px}
+  .hero h1 em{font-style:italic;color:var(--denim)}
+  .hero .sub{display:block;max-width:50ch;margin:24px auto 0;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--denim);line-height:2}
+  .hero-cta{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:36px}
+  .hero-collage{position:relative;max-width:920px;margin:0 auto}
+  .hero .photo{position:absolute;width:120px;height:150px}
+  .hero .p1{left:-10px;top:6px;transform:rotate(-7deg)}
+  .hero .p2{right:-6px;top:0;transform:rotate(6deg);width:130px;height:120px}
+  .hero .p3{right:30px;bottom:-30px;transform:rotate(-5deg);width:120px;height:110px}
+  .hero .p4{left:24px;bottom:-26px;transform:rotate(6deg);width:110px;height:120px}
+  .hero .blob1{width:230px;height:230px;background:var(--powder);left:-60px;top:-30px;opacity:.55}
+  .hero .blob2{width:200px;height:200px;background:var(--whipped);right:-40px;bottom:-50px;opacity:.8}
+  .hero-inner{position:relative;z-index:3;padding:30px 0}
+  @media(max-width:760px){.hero .photo{display:none}.hero .blob{opacity:.4}}
+
+  .sec-head{max-width:620px;margin:0 auto clamp(36px,5vw,56px)}
+  .sec-head .eyebrow{display:block;margin-bottom:14px}
+  .sec-head h2{font-size:clamp(34px,5vw,58px)}
+  .sec-head h2 em{font-style:italic;color:var(--denim)}
+
+  .workshop{background:var(--white);padding:clamp(60px,8vw,104px) 0}
+  .ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center}
+  .ws-photo{height:380px}
+  .ws-flag{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:999px;background:var(--powder);margin-bottom:20px}
+  .ws-flag .dot{width:7px;height:7px;border-radius:50%;background:var(--honeycomb)}
+  .ws-flag span{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--atlantic)}
+  .workshop h2{font-size:clamp(36px,5vw,58px);margin-bottom:8px}
+  .workshop h2 em{font-style:italic;color:var(--denim);display:block;font-size:.5em;font-weight:400;margin-top:8px}
+  .workshop .lede{color:var(--denim);max-width:46ch;margin:18px 0 26px;font-size:16px}
+  .ws-details{display:grid;grid-template-columns:auto 1fr;gap:11px 20px;font-size:14px;margin-bottom:28px;padding:22px 0;border-top:1px solid var(--powder);border-bottom:1px solid var(--powder)}
+  .ws-details dt{color:var(--denim);font-weight:500}
+  .ws-details dd{color:var(--atlantic)}
+  .ws-note{font-size:13px;color:var(--denim);margin-top:16px}
+
+  .cohort{background:var(--atlantic);color:var(--whipped);padding:0 0 clamp(60px,8vw,100px)}
+  .scallop{display:block;width:100%;height:30px}
+  .cohort .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center;padding-top:clamp(40px,6vw,72px)}
+  .cohort h2{color:var(--soft-butter);font-size:clamp(36px,5vw,58px)}
+  .cohort .lede{color:var(--powder);max-width:48ch;margin:18px 0 30px;font-size:16px}
+  .feature-row{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:32px}
+  .feature{display:flex;align-items:center;gap:11px;font-size:13.5px;color:var(--whipped)}
+  .feature .ic{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(215,222,232,.45);flex-shrink:0}
+  .feature .ic svg{width:18px;height:18px;stroke:var(--powder)}
+  .cohort .ws-photo{height:420px;border-color:rgba(248,239,216,.9)}
+  .tier-price{font-family:var(--display);font-size:clamp(30px,3.6vw,42px);color:var(--atlantic);line-height:1;margin-bottom:24px;display:block}
+  .tier-price .per{font-family:var(--body);font-size:13px;font-weight:400;color:var(--denim);letter-spacing:.04em;margin-left:10px}
+  .on-navy .tier-price{color:var(--soft-butter)}
+  .on-navy .tier-price .per{color:var(--powder)}
+
+  .hired{background:var(--soft-butter);padding:clamp(64px,9vw,116px) 0;overflow:hidden}
+  .hired-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center}
+  .hired h2{font-size:clamp(36px,5vw,58px)}
+  .hired h2 em{font-style:italic;color:var(--denim)}
+  .hired .lede{color:var(--denim);max-width:46ch;margin:18px 0 28px;font-size:16px}
+  .hired .feature .ic{border-color:rgba(79,107,138,.4)}
+  .hired .feature .ic svg{stroke:var(--denim)}
+  .hired .feature{color:var(--atlantic)}
+  .hired .blob1{width:260px;height:260px;background:var(--powder);right:-90px;top:40px;opacity:.45}
+  .hired-photo{height:440px}
+
+  .about{background:var(--white);padding:clamp(64px,9vw,116px) 0}
+  .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+  .about-card{border-radius:20px;padding:clamp(28px,3vw,42px);position:relative;overflow:hidden}
+  .about-card .name{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;font-size:24px;margin-bottom:14px}
+  .about-card .role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:18px;display:block}
+  .about-card .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top center;margin-bottom:16px;border:2px solid rgba(248,239,216,.6)}
+  .about-card p{font-size:15px;line-height:1.7}
+  .card-pnf{background:var(--whipped);color:var(--atlantic)}
+  .card-pnf .name{color:var(--atlantic)}
+  .card-pnf .role{color:var(--denim)}
+  .card-oigoga{background:var(--atlantic);color:var(--powder)}
+  .card-oigoga .name{color:var(--soft-butter)}
+  .card-oigoga .role{color:var(--honeycomb)}
+  .about-tie{text-align:center;max-width:54ch;margin:0 auto;font-family:var(--display);font-style:italic;font-size:clamp(20px,2.6vw,28px);color:var(--denim)}
+
+  .start{background:var(--powder);padding:clamp(64px,9vw,116px) 0;position:relative;overflow:hidden}
+  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-top:14px}
+  .roadmap::before{content:'';position:absolute;top:26px;left:11%;right:11%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
+  .step{position:relative;z-index:1;text-align:center}
+  .step .num{width:54px;height:54px;border-radius:50%;background:var(--white);border:1.5px solid var(--atlantic);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;color:var(--atlantic);margin:0 auto 18px}
+  .step.first .num{background:var(--atlantic);color:var(--soft-butter);border-color:var(--atlantic)}
+  .step h3{font-size:20px;margin-bottom:8px}
+  .step p{font-size:13.5px;color:var(--denim);max-width:24ch;margin:0 auto}
+  .start .cta-row{text-align:center;margin-top:48px}
+
+  .contact{background:var(--classic-navy);color:var(--powder);padding:clamp(64px,9vw,112px) 0}
+  .contact .sec-head h2{color:var(--soft-butter)}
+  .contact .sec-head .eyebrow{color:var(--honeycomb)}
+  .contact-card{max-width:560px;margin:0 auto;background:rgba(215,222,232,.06);border:1px solid rgba(215,222,232,.18);border-radius:20px;padding:clamp(28px,4vw,44px);text-align:center}
+  .contact-card p{color:var(--powder);margin-bottom:26px;font-size:15px}
+  .contact-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .contact-row .btn-primary{background:var(--honeycomb);color:var(--classic-navy)}
+  .contact-row .btn-primary:hover{background:var(--soft-butter)}
+  .contact-row .btn-outline{color:var(--whipped);border-color:rgba(248,239,216,.5)}
+  .contact-row .btn-outline:hover{background:var(--whipped);color:var(--classic-navy)}
+  .contact-mail{display:block;margin-top:22px;color:var(--powder);font-size:13.5px;text-decoration:none}
+  .contact-mail:hover{color:var(--honeycomb)}
+
+  footer{background:var(--atlantic);color:var(--powder);padding:clamp(52px,7vw,84px) 0 40px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(215,222,232,.18)}
+  footer .wordmark{color:var(--soft-butter);font-size:30px}
+  footer .tagline{font-family:var(--display);font-style:italic;font-size:21px;color:var(--whipped);margin-top:10px;max-width:24ch}
+  .foot-col h4{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--powder);opacity:.7;margin-bottom:16px}
+  .foot-col a{display:block;color:var(--powder);text-decoration:none;font-size:14px;margin-bottom:11px;transition:color .2s}
+  .foot-col a:hover{color:var(--honeycomb)}
+  .socials{display:flex;gap:14px;margin-top:4px}
+  .socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(215,222,232,.3);display:flex;align-items:center;justify-content:center;transition:all .25s}
+  .socials a:hover{background:var(--honeycomb);border-color:var(--honeycomb)}
+  .socials a:hover svg{stroke:var(--classic-navy)}
+  .socials svg{width:17px;height:17px;stroke:var(--powder);fill:none}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(215,222,232,.7)}
+  .foot-bottom .family .ow{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;color:var(--whipped)}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .ws-grid,.cohort-grid,.hired-grid,.about-cards{grid-template-columns:1fr;gap:30px}
+    .ws-photo,.hired-photo{height:300px}
+    .cohort .ws-photo{height:300px}
+    .roadmap{grid-template-columns:1fr;gap:30px}
+    .roadmap::before{display:none}
+    .foot-top{grid-template-columns:1fr;gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#top" class="wordmark">pixels<span class="accent">n</span>files<span class="accent">.</span></a>
+    <div class="nav-links">
+      <a href="#workshop">Workshop</a>
+      <a href="#cohort">Cohort</a>
+      <a href="#hired">Full Track</a>
+      <a href="#about">About</a>
+      <a href="#start">Get started</a>
+      <a href="#workshop" class="btn btn-primary">Save my seat</a>
+    </div>
+    <button class="menu-btn">Menu</button>
+  </div>
+</nav>
+<span id="top"></span>
+
+<!-- ===== 1 · HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-collage">
+      <span class="blob blob1"></span>
+      <span class="blob blob2"></span>
+      <div class="photo p1" data-label="photo"></div>
+      <div class="photo p2"><img class="fit-top" src="images/oigoga-portrait.jpg" alt="Oigoga Elisabeth, founder of pixelsnfiles"></div>
+      <div class="photo p3" data-label="photo"></div>
+      <div class="photo p4" data-label="photo"></div>
+      <svg class="flower" style="left:50%;top:-6px;transform:translateX(-50%);width:42px;height:42px" viewBox="0 0 40 40">
+        <g fill="#D7DEE8"><circle cx="20" cy="7" r="7"/><circle cx="33" cy="20" r="7"/><circle cx="20" cy="33" r="7"/><circle cx="7" cy="20" r="7"/><circle cx="29" cy="11" r="6"/><circle cx="29" cy="29" r="6"/><circle cx="11" cy="29" r="6"/><circle cx="11" cy="11" r="6"/></g>
+        <circle cx="20" cy="20" r="6" fill="#E8B775"/>
+      </svg>
+      <div class="hero-inner">
+        <span class="eyebrow reveal in">VA coaching &amp; training</span>
+        <h1 class="reveal in">Go from beginner,<br><em>to hired.</em></h1>
+        <span class="sub reveal in">The workshop, the cohort, and the specialist track &mdash; in the right order, with the standard built in.</span>
+        <div class="hero-cta reveal in">
+          <a href="#workshop" class="btn btn-primary">Save my seat &rarr;</a>
+          <a href="#start" class="btn btn-ghost">Show me the path <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 2 · NEXT WORKSHOP (swap zone) ===== -->
+<!-- SWAP ZONE: replace this section each month. Editable bits marked [EDIT]. -->
+<section class="workshop" id="workshop">
+  <div class="wrap ws-grid">
+    <div class="reveal">
+      <div class="ws-flag"><span class="dot"></span><span>Next workshop</span></div>
+      <!-- [EDIT] workshop title -->
+      <h2>From Zero Skill to First Client<em>the path no one shows you, and why you may be stuck</em></h2>
+      <!-- [EDIT] one-line description -->
+      <p class="lede">One live session that maps the full route from no experience to your first paid client. Built for total beginners and for freelancers who have stalled along the way.</p>
+      <dl class="ws-details">
+        <dt>Date</dt><dd>Saturday, 20th June 2026</dd>
+        <dt>Time</dt><dd>6:00pm, WAT</dd>
+        <dt>Format</dt><dd>Live on Google Meet, replay included</dd>
+        <dt>You leave with</dt><dd>A clear roadmap and your next three steps</dd>
+      </dl>
+      <a href="https://lnk.ink/FromZeroSkillsToFirstClient" target="_blank" rel="noopener" class="btn btn-primary">Save my seat &rarr;</a>
+      <p class="ws-note">We cap each room so it stays useful. Seats go in order of registration.</p>
+    </div>
+    <div class="photo ws-photo reveal"><img src="images/workshop-flyer.png" alt="From Zero Skill to First Client workshop flyer, 20th June 2026, 6pm WAT on Google Meet"></div>
+  </div>
+</section>
+
+<!-- ===== 3 · COHORT (navy) ===== -->
+<section class="cohort on-navy" id="cohort">
+  <svg class="scallop" viewBox="0 0 1200 30" preserveAspectRatio="none">
+    <path d="M0,30 L0,16 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 L1200,30 Z" fill="#2F4A6B"/>
+  </svg>
+  <div class="wrap cohort-grid">
+    <div class="photo ws-photo reveal" data-label="cohort photo"></div>
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--powder);display:block;margin-bottom:14px">The Cohort · 6 weeks · Small group</span>
+      <h2>Six weeks to client-ready.</h2>
+      <p class="lede">Got the skills but nothing to prove it? In six weeks you'll build real task packs that double as portfolio pieces, get every submission reviewed against a professional standard, and come out with a profile that converts.</p>
+      <p class="lede" style="font-size:14px;margin-top:-12px">We get you ready and equipped. The applying is yours to do &mdash; and you'll know exactly how.</p>
+      <div class="feature-row">
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Real task packs</div>
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/></svg></span>Portfolio pieces</div>
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></span>Reviewed work</div>
+      </div>
+      <!-- [CONFIRM] cohort price still has a question mark in your doc -->
+      <span class="tier-price">&#8358;50,000<span class="per">· six weeks, group</span></span>
+      <a href="#" class="btn btn-outline">Join my cohort &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4 · HIRED TIER / FULL TRACK (butter) ===== -->
+<section class="hired" id="hired">
+  <span class="blob blob1"></span>
+  <div class="wrap hired-grid">
+    <div class="reveal">
+      <span class="eyebrow" style="display:block;margin-bottom:14px">The Full Track · Specialist · One to one</span>
+      <h2>Train as a specialist. <em>Charge like one.</em></h2>
+      <p class="lede">Tired of generalist rates for specialist work? Train as a CRM Specialist through the Phase 2 curriculum &mdash; the depth that lets you charge several times more. One to one, with our eyes on your work and lifetime access to us. Self-paced, 12 months to finish.</p>
+      <div class="feature-row">
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l2.4 6.6L21 9l-5 4.2L17.6 20 12 16.3 6.4 20 8 13.2 3 9l6.6-.4z"/></svg></span>CRM specialism</div>
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><circle cx="16" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5M15.5 20c0-2.2 1.5-3.5 3.5-3.5"/></svg></span>One to one</div>
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>Lifetime access</div>
+      </div>
+      <span class="tier-price">&#8358;300,000<span class="per">· self-paced, 12-month window</span></span>
+      <a href="#" class="btn btn-primary">Apply for my spot &rarr;</a>
+    </div>
+    <div class="photo hired-photo reveal" data-label="full track photo"></div>
+  </div>
+</section>
+
+<!-- ===== 5 · ABOUT PNF + OIGOGA ===== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">The family</span>
+      <h2>Two brands, <em>one system.</em></h2>
+    </div>
+    <div class="about-cards">
+      <div class="about-card card-pnf reveal">
+        <div class="name">pixels<span class="accent">n</span>files<span class="accent">.</span></div>
+        <span class="role">The training ground</span>
+        <p>PixelsnFiles is where the work happens. The workshops, the cohort, the curriculum, the task packs, the standard. It is the engine room that takes someone from no experience to a portfolio they can stand behind.</p>
+      </div>
+      <div class="about-card card-oigoga reveal">
+        <img class="avatar" src="images/oigoga-portrait.jpg" alt="Oigoga Elisabeth">
+        <div class="name">oigoga<span class="accent">.</span></div>
+        <span class="role">The coaching brand</span>
+        <p>Oigoga is the brand out front. The voice, the community, the person showing you it can be done, more than once, from the ground up. It is how people find their way in.</p>
+      </div>
+    </div>
+    <p class="about-tie reveal">Same palette. Same standard. Same north star: beginner to hired.</p>
+  </div>
+</section>
+
+<!-- ===== 6 · GET STARTED + ROADMAP ===== -->
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">How to get started</span>
+      <h2>Four steps from here to hired.</h2>
+    </div>
+    <div class="roadmap">
+      <div class="step first reveal">
+        <div class="num">1</div>
+        <h3>Take the Skills Map</h3>
+        <p>Our free self-check. See where you stand and what to learn first.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">2</div>
+        <h3>Join a workshop</h3>
+        <p>Find your footing on one skill in a single live session.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">3</div>
+        <h3>Run the cohort</h3>
+        <p>Build a portfolio and get client-ready over four to six weeks.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">4</div>
+        <h3>Specialise</h3>
+        <p>Go deep on the Full Track, train as a CRM Specialist, get hired.</p>
+      </div>
+    </div>
+    <div class="cta-row reveal">
+      <a href="#workshop" class="btn btn-primary">Save my seat for the next workshop &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7 · CONTACT (navy) ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Got a question first?</h2>
+    </div>
+    <div class="contact-card reveal">
+      <p>Book a quick call and we will help you work out which step makes sense for where you are right now.</p>
+      <div class="contact-row">
+        <a href="https://calendar.app.google/cbdDxKzp66TKEAcSA" target="_blank" rel="noopener" class="btn btn-primary">Book my call &rarr;</a>
+        <a href="#workshop" class="btn btn-outline">Save my workshop seat</a>
+      </div>
+      <!-- [EDIT] contact email -->
+      <a href="mailto:hello@pixelsnfiles.com" class="contact-mail">or email hello@pixelsnfiles.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8 · FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="wordmark">pixels<span class="accent">n</span>files<span class="accent">.</span></a>
+        <div class="tagline">Go from absolute beginner to hired.</div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#workshop">The workshop</a>
+        <a href="#cohort">The cohort</a>
+        <a href="#hired">The Full Track</a>
+        <a href="#start">Get started</a>
+      </div>
+      <div class="foot-col">
+        <h4>Find us</h4>
+        <a href="#contact">Contact</a>
+        <a href="https://calendar.app.google/cbdDxKzp66TKEAcSA" target="_blank" rel="noopener">Book a call</a>
+        <div class="socials">
+          <a href="https://instagram.com/oigoga_/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://ng.linkedin.com/in/oigogaaba" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 17v-7"/></svg>
+          </a>
+          <!-- Facebook [EDIT] link -->
+          <a href="#" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 PixelsnFiles. All rights reserved.</span>
+      <span class="family">Sister brand <span class="ow">oigoga<span class="accent">.</span></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
