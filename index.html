@@ -182,7 +182,7 @@
   .read-more:hover{color:var(--honeycomb)}
   .read-more svg{width:13px;height:13px;stroke:currentColor;fill:none;transition:transform .3s}
   .read-more.open svg{transform:rotate(180deg)}
-  .coach-inline-img{display:none;float:left;width:clamp(130px,18%,170px);margin:0 40px 28px 0;border-radius:14px;overflow:hidden;border:4px solid var(--whipped);shape-outside:content-box}
+  .coach-inline-img{display:none;float:left;width:clamp(130px,18%,170px);margin:0 56px 28px 0;padding-right:0;border-radius:14px;overflow:hidden;border:4px solid var(--whipped)}
   .coach-inline-img img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
   .coach.expanded .coach-grid{display:block}
   .coach.expanded .coach-photo-col{display:none}
@@ -190,7 +190,7 @@
 
   /* TESTIMONIALS */
   .testimonials{background:var(--whipped);padding:clamp(64px,9vw,100px) 0}
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:clamp(32px,4vw,48px)}
+  .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:clamp(32px,4vw,48px)}
   .testi-card{background:var(--white);border-radius:16px;padding:clamp(22px,2.5vw,32px);position:relative}
   .testi-card::before{content:'\201C';font-family:var(--display);font-size:64px;line-height:1;color:var(--honeycomb);position:absolute;top:14px;left:20px;opacity:.6}
   .testi-body{font-size:14.5px;color:var(--atlantic);line-height:1.75;margin-top:32px}
@@ -200,7 +200,7 @@
   /* ROADMAP */
   .start{background:var(--powder);padding:clamp(64px,9vw,116px) 0;position:relative;overflow:hidden}
   .roadmap{display:grid;grid-template-columns:1fr 1fr 1.8fr;gap:20px;position:relative;margin-top:14px}
-  .roadmap::before{content:'';position:absolute;top:26px;left:9%;right:52%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
+  .roadmap::before{content:'';position:absolute;top:26px;left:9%;right:22%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
   .step{position:relative;z-index:1;text-align:center}
   .step .num{width:54px;height:54px;border-radius:50%;background:var(--white);border:1.5px solid var(--atlantic);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;color:var(--atlantic);margin:0 auto 18px}
   .step.first .num{background:var(--atlantic);color:var(--soft-butter);border-color:var(--atlantic)}
@@ -225,8 +225,12 @@
   .faq-q svg{flex-shrink:0;width:15px;height:15px;stroke:var(--denim);fill:none;transition:transform .3s}
   .faq-q.open svg{transform:rotate(180deg)}
   .faq-a{overflow:hidden;max-height:0;transition:max-height .4s ease}
-  .faq-a.open{max-height:400px}
+  .faq-a.open{max-height:900px}
   .faq-a-inner{font-size:14px;color:var(--denim);line-height:1.7;padding-bottom:16px}
+  .faq-a-inner p{margin-bottom:10px}
+  .faq-a-inner p:last-child{margin-bottom:0}
+  .faq-a-inner ul{padding-left:18px;margin:8px 0 12px}
+  .faq-a-inner ul li{margin-bottom:8px;line-height:1.6}
 
   /* CONTACT */
   .contact{background:var(--classic-navy);color:var(--powder);padding:clamp(64px,9vw,112px) 0}
@@ -489,22 +493,14 @@
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
-        <p class="testi-body">I used the proposal writing framework from the workshop and my proposal got viewed for the first time ever. I didn't even realise what I was sending before wasn't getting opened.</p>
-        <!-- [EDIT] Replace with real name and context -->
-        <div class="testi-name">Workshop attendee</div>
-        <div class="testi-tag">Replace with real name</div>
+        <p class="testi-body">Oigoga Aba led a standout session for the Cleva Campus Ambassadors on writing winning proposals. She broke down exactly how to turn cold pitches into paying clients. Practical, sharp, and genuinely actionable. I walked away knowing precisely what to do differently.</p>
+        <div class="testi-name">Solomon Matthews</div>
+        <div class="testi-tag">Cleva Campus Ambassadors</div>
       </div>
       <div class="testi-card reveal">
-        <p class="testi-body">I heard people talk about freelancing and making money online but I didn't know where to start. After six weeks in the cohort, I had an entire portfolio of projects I could show any client — and I knew exactly how to pitch myself.</p>
-        <!-- [EDIT] Replace with real name and context -->
-        <div class="testi-name">Cohort member</div>
-        <div class="testi-tag">Replace with real name</div>
-      </div>
-      <div class="testi-card reveal">
-        <p class="testi-body">Before the workshop I had the skills but no idea how to turn them into income. The clarity I got in that one session was more than I got from months of watching videos on my own.</p>
-        <!-- [EDIT] Replace with real name and context -->
-        <div class="testi-name">Workshop attendee</div>
-        <div class="testi-tag">Replace with real name</div>
+        <p class="testi-body">The session was fun, relatable and insightful. She had such electric energy.</p>
+        <div class="testi-name">Cleva Ambassadors</div>
+        <div class="testi-tag">Workshop attendee</div>
       </div>
     </div>
   </div>
@@ -560,37 +556,55 @@
       <div class="reveal">
         <h3 class="faq-col-head">The Cohort</h3>
         <div class="faq-item">
-          <button class="faq-q">What if I don't have any experience — is six weeks enough? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. The cohort is built for total beginners and for people who have some skills but are stuck. You don't need experience to start, you need to show up and do the work. By week six you will have a portfolio and everything you need to go after clients.</div></div>
+          <button class="faq-q">What if I don't have any experience, is six weeks enough? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. The cohort is built for total beginners and for people who have some skills but are stuck. You don't need experience to start, you need to show up and do the work. By week six you'll have a portfolio and everything you need to go after clients.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">How much time do I need to commit each week? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <!-- [EDIT] Fill in the expected weekly time commitment -->
-          <div class="faq-a"><div class="faq-a-inner">Add your answer here — e.g. X hours per week, what sessions look like, when live calls happen etc.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Plan for around 10 to 12 hours a week, with two of those live with us.</p>
+            <p>Here's where the time goes:</p>
+            <ul>
+              <li>2 hours on the live group call, same day and time every week. Recordings available if you genuinely can't make it, but the cohort moves at a pace so live matters.</li>
+              <li>6 to 8 hours on your task pack — the real work that becomes your portfolio.</li>
+              <li>1 to 2 hours on the curriculum and reading for the week.</li>
+              <li>30 minutes to 1 hour submitting your work and acting on the feedback before the next call.</li>
+            </ul>
+            <p>Most of you have school, jobs, businesses, or family. The cohort is built so the time can be split across mornings, evenings, and weekends. We don't recommend going below 10 hours a week. The task packs won't reach portfolio standard, and that's the whole point of being here.</p>
+          </div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Will I actually have a portfolio by the end? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes — that's the whole point. The cohort is built around real task packs that become portfolio pieces. You don't just learn, you produce. By the end you will have work you can send to any client.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, that's the whole point. The cohort is built around real task packs that become portfolio pieces. By the end you'll have work you can send to any client.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is there a payment plan? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. You can pay in three installments, one to secure your spot and the other two before week five.</div></div>
         </div>
       </div>
       <div class="reveal">
         <h3 class="faq-col-head">The Full Track</h3>
         <div class="faq-item">
           <button class="faq-q">Why is it 6 months? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">Training as a CRM Specialist takes depth, not just breadth. Six months gives you time to learn the skills, practise them properly, build your portfolio, and land your first client — without rushing or cutting corners.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Training as a Specialist takes depth. The track is self-paced with a 6-month window, which gives you time to learn the skills properly, practise them, build your portfolio, and land your first client. You can move faster than 6 months if you want to. The window is there so life can happen without you losing access.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What does the one-to-one support include? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <!-- [EDIT] Fill in what one-to-one actually looks like — calls, work reviews, messaging, response time etc. -->
-          <div class="faq-a"><div class="faq-a-inner">Add your answer here — e.g. weekly check-ins, direct feedback on submissions, access via WhatsApp/email, how quickly you respond etc.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Paired one-to-one coaching calls with us throughout the track, where we look at your specific work and give direct feedback.</p>
+            <p>Direct access on WhatsApp for questions between calls, with replies within one working day.</p>
+            <p>Written reviews on every task pack you submit.</p>
+            <p>Lifetime Q&amp;A access once you complete, so you can come back to us long after you've finished.</p>
+            <p>This is the part you're paying for, and we treat it that way.</p>
+          </div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What happens after the training? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">You keep lifetime access to the community and all the materials. The goal is for you to land your first client during the six months — we stay in it with you until that happens.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">You keep lifetime access to the community and all the materials. The goal during the track is to get you to your first client, and we work closely with you on applications and discovery calls while you're in the programme. After you finish, the community, the materials, and the Q&amp;A access stay open to you whenever you need them.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Is there a payment plan? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. You can pay in up to five instalments. Book a call and we will walk you through the options.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. You can pay in up to five installments. Book a call and we'll walk you through the options.</div></div>
         </div>
       </div>
     </div>
@@ -605,13 +619,11 @@
       <h2>Got a question first?</h2>
     </div>
     <div class="contact-card reveal">
-      <p>Book a quick call and we will help you work out which step makes sense for where you are right now.</p>
+      <p>Got a question? Send us an email and we will help you work out which step makes sense for where you are right now.</p>
       <div class="contact-row">
-        <a href="https://calendar.app.google/hjMD46HWqe17mK3Q9" target="_blank" rel="noopener" class="btn btn-primary">Book my call &rarr;</a>
+        <a href="mailto:oigoga.ea@gmail.com" class="btn btn-primary">Send an email &rarr;</a>
         <a href="#workshop" class="btn btn-outline">Save my workshop seat</a>
       </div>
-      <!-- [EDIT] contact email -->
-      <a href="mailto:hello@pixelsnfiles.com" class="contact-mail">or email hello@pixelsnfiles.com</a>
     </div>
   </div>
 </section>
