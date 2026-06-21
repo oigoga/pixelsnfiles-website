@@ -139,14 +139,16 @@
   .check-list .ck svg{width:10px;height:10px;stroke:var(--classic-navy);stroke-width:2.5;fill:none}
 
   /* FOR YOU / NOT FOR YOU */
-  .fit-block{border-radius:14px;padding:clamp(18px,2vw,26px);margin:16px 0;text-align:left}
+  .cohort-fit{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:780px;margin:clamp(32px,4vw,48px) auto 0}
+  .cohort-cta{text-align:center;margin-top:clamp(24px,3vw,36px)}
+  .fit-block{border-radius:14px;padding:clamp(18px,2vw,26px);margin:0;text-align:left}
   .fit-block.for-you{background:rgba(232,183,117,.12);border:1px solid rgba(232,183,117,.3)}
   .fit-block.not-you{background:rgba(215,222,232,.07);border:1px solid rgba(215,222,232,.18)}
   .fit-block h4{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;color:var(--honeycomb)}
   .fit-block.not-you h4{color:var(--powder);opacity:.7}
   .fit-item{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--powder);margin-bottom:7px;line-height:1.5}
   .fit-item:last-child{margin-bottom:0}
-  .fit-icon{flex-shrink:0;margin-top:1px}
+  .fit-icon{flex-shrink:0;margin-top:1px;color:var(--honeycomb)}
 
   /* HIRED */
   .hired{background:var(--soft-butter);padding:clamp(64px,9vw,116px) 0;overflow:hidden}
@@ -234,7 +236,7 @@
   @media(max-width:760px){
     .nav-links{display:none}
     .menu-btn{display:block}
-    .ws-grid,.cohort-grid,.hired-grid,.coach-grid{grid-template-columns:1fr;gap:30px}
+    .ws-grid,.cohort-grid,.hired-grid,.coach-grid,.cohort-fit{grid-template-columns:1fr;gap:20px}
     .pain-grid{grid-template-columns:1fr;gap:20px}
     .ws-photo{height:300px}
     .testi-grid{grid-template-columns:1fr;gap:20px}
@@ -346,20 +348,24 @@
   <svg class="scallop" viewBox="0 0 1200 30" preserveAspectRatio="none">
     <path d="M0,30 L0,16 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 L1200,30 Z" fill="#2F4A6B"/>
   </svg>
-  <div class="wrap cohort-grid">
-    <div class="photo flyer-photo reveal"><img src="images/cohort-flyer.jpg" alt="PixelsnFiles Cohort — Six weeks to Client Ready"></div>
-    <div class="reveal">
-      <span class="eyebrow" style="color:var(--powder);display:block;margin-bottom:14px">The Cohort · 6 weeks · Small group</span>
-      <h2>Six weeks to client-ready.</h2>
-      <p class="lede">Whether you have some skills but no portfolio to prove it, or you're starting from zero — in six weeks you will leave with everything you need to go out and land your first client.</p>
-      <ul class="check-list">
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A complete professional portfolio</li>
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Ready-to-use proposal templates</li>
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Discovery call scripts</li>
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Client communication templates</li>
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Real-world task packs</li>
-        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A clear client acquisition strategy</li>
-      </ul>
+  <div class="wrap">
+    <div class="cohort-grid">
+      <div class="photo flyer-photo reveal"><img src="images/cohort-flyer.jpg" alt="PixelsnFiles Cohort — Six weeks to Client Ready"></div>
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--powder);display:block;margin-bottom:14px">The Cohort · 6 weeks · Small group</span>
+        <h2>Six weeks to client-ready.</h2>
+        <p class="lede">Whether you have some skills but no portfolio to prove it, or you're starting from zero — in six weeks you will leave with everything you need to go out and land your first client.</p>
+        <ul class="check-list">
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A complete professional portfolio</li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Ready-to-use proposal templates</li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Discovery call scripts</li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Client communication templates</li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Real-world task packs</li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A clear client acquisition strategy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cohort-fit reveal">
       <div class="fit-block for-you">
         <h4>This is for you if</h4>
         <div class="fit-item"><span class="fit-icon">✓</span>You're completely new to freelancing</div>
@@ -374,7 +380,9 @@
         <div class="fit-item"><span class="fit-icon">✗</span>You don't want to take action</div>
         <div class="fit-item"><span class="fit-icon">✗</span>You're unwilling to practise and apply</div>
       </div>
-      <!-- [CONFIRM] cohort price still has a question mark in your doc -->
+    </div>
+    <!-- [CONFIRM] cohort price still has a question mark in your doc -->
+    <div class="cohort-cta reveal">
       <span class="tier-price">&#8358;50,000<span class="per">· six weeks, group</span></span>
       <a href="#" class="btn btn-outline">Join my cohort &rarr;</a>
     </div>
