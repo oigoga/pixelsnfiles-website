@@ -119,10 +119,12 @@
   /* COHORT */
   .cohort{background:var(--atlantic);color:var(--whipped);padding:0 0 clamp(60px,8vw,100px)}
   .scallop{display:block;width:100%;height:30px}
-  .cohort .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center;padding-top:clamp(40px,6vw,72px)}
+  .cohort .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:start;padding-top:clamp(40px,6vw,72px)}
+  .cohort .cohort-grid .flyer-photo{grid-row:1/3}
+  .cohort-title{text-align:center}
+  .cohort-detail{text-align:center}
   .cohort h2{color:var(--soft-butter);font-size:clamp(36px,5vw,58px)}
   .cohort .lede{color:var(--powder);max-width:48ch;margin:18px auto 24px;font-size:16px}
-  .cohort-grid>div:last-child{text-align:center}
   .feature-row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
   .feature{display:flex;align-items:center;gap:11px;font-size:13.5px;color:var(--whipped)}
   .feature .ic{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(215,222,232,.45);flex-shrink:0}
@@ -286,13 +288,13 @@
     .fork-paths{grid-template-columns:1fr;gap:8px}
     .foot-top{grid-template-columns:1fr;gap:30px}
 
-    /* Cohort mobile fixes */
-    .cohort .cohort-grid{align-items:start}
-    .cohort-grid>div:last-child{text-align:left}
+    /* Cohort mobile: title → image → detail */
+    .cohort .cohort-grid{display:flex;flex-direction:column;padding-top:clamp(32px,5vw,56px)}
+    .cohort-title{order:1;text-align:left}
+    .cohort .cohort-grid .flyer-photo{order:2;grid-row:unset}
+    .cohort-detail{order:3;text-align:left}
     .cohort .lede{margin-left:0;margin-right:0}
     .check-list{max-width:100%;margin-left:0;margin-right:0}
-    .cohort .photo.flyer-photo{max-height:400px}
-    .cohort .photo.flyer-photo img{height:100%;object-fit:cover}
     .cohort-fit{margin-top:24px}
   }
 </style>
@@ -412,10 +414,12 @@
   <div class="wrap">
     <div class="cohort-grid">
       <div class="photo flyer-photo reveal"><img src="images/cohort-flyer.jpg" alt="PixelsnFiles Cohort — Six weeks to Client Ready"></div>
-      <div class="reveal">
+      <div class="cohort-title reveal">
         <span class="eyebrow" style="color:var(--powder);display:block;margin-bottom:14px">The Cohort · 6 weeks · Small group</span>
         <h2>Six weeks to client-ready.</h2>
         <p class="lede">Whether you have some skills but no portfolio to prove it, or you're starting from zero — in six weeks you will leave with everything you need to go out and land your first client.</p>
+      </div>
+      <div class="cohort-detail reveal">
         <ul class="check-list">
           <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A complete professional portfolio</li>
           <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Ready-to-use proposal templates</li>
