@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(date -j -f \"%Y-%m-%d\" \"2026-06-20\" \"+%A\")",
+      "Read(//Users/oigoga/Projects/**)",
+      "Bash(mkdir -p \"/Users/oigoga/Projects/pnf coaching website /images\")",
+      "Bash(cp \"/Users/oigoga/Downloads/pixelsnfiles-website.html\" \"/Users/oigoga/Projects/pnf coaching website /index.html\")",
+      "Bash(cp \"/Users/oigoga/Downloads/IMG_0212 \\(1\\).JPG\" \"/Users/oigoga/Projects/pnf coaching website /images/oigoga-portrait.jpg\")",
+      "Bash(cp \"/Users/oigoga/Downloads/WORKSHOP.png\" \"/Users/oigoga/Projects/pnf coaching website /images/workshop-flyer.png\")"
+    ],
+    "additionalDirectories": [
+      "/Users/oigoga/Downloads",
+      "/Users/oigoga/Projects/pnf coaching website "
+    ]
+  }
+}

@@ -171,7 +171,17 @@
   .coach-content .eyebrow{display:block;margin-bottom:14px}
   .coach-content h2{font-size:clamp(30px,4.5vw,52px);margin-bottom:20px}
   .coach-content h2 em{font-style:italic;color:var(--denim)}
-  .coach-content p{font-size:15px;color:var(--denim);line-height:1.8;margin-bottom:16px}
+  .coach-bio{position:relative;margin-bottom:4px}
+  .coach-bio-text{overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1)}
+  .coach-bio-text.collapsed{max-height:145px}
+  .coach-bio-text p{font-size:15px;color:var(--denim);line-height:1.85;margin-bottom:15px}
+  .coach-bio-text p:last-child{margin-bottom:0}
+  .coach-bio-fade{position:absolute;bottom:0;left:0;right:0;height:72px;background:linear-gradient(transparent,var(--white));pointer-events:none;transition:opacity .3s}
+  .coach-bio-fade.hidden{opacity:0}
+  .read-more{background:none;border:none;color:var(--atlantic);font-family:var(--body);font-weight:600;font-size:14px;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:6px;margin-top:14px;letter-spacing:.02em;transition:color .2s}
+  .read-more:hover{color:var(--honeycomb)}
+  .read-more svg{width:13px;height:13px;stroke:currentColor;fill:none;transition:transform .3s}
+  .read-more.open svg{transform:rotate(180deg)}
   .coach-proof{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
   .proof-pill{background:var(--powder);border-radius:999px;padding:8px 18px;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--atlantic)}
 
@@ -420,21 +430,37 @@
     <div class="coach-grid">
       <div class="reveal">
         <div class="coach-photo">
-          <img src="images/oigoga-portrait.jpg" alt="Oigoga Elisabeth">
+          <img src="images/oigoga-headshot.jpg" alt="Oigoga Elisabeth">
         </div>
       </div>
       <div class="coach-content reveal">
         <span class="eyebrow">Meet your coach</span>
-        <!-- [EDIT] Replace h2 sub-line and paragraphs with Oigoga's real story — background, how she got into freelancing, income/client milestones, years of experience, what makes her different -->
         <h2>Hi, I'm Oigoga.<br><em>I've been where you are.</em></h2>
-        <p>I started from zero. No connections, no fancy CV, no one to show me the way. I figured it out — and then I figured it out again, and again, because that's what freelancing actually is. Each time I got better at the thing that matters: turning skills into income.</p>
-        <p>Now I work with pixelsnfiles to do for you what no YouTube video ever did for me — give you a real path, real tasks, and someone who stays in the room with you until it works.</p>
-        <p>Everything in the cohort and the full track is built from what I actually did, not what sounds good in a webinar.</p>
-        <!-- [EDIT] Replace pills with real proof points — e.g. "X clients coached", "Y years freelancing", specific credential, platform, niche -->
+        <div class="coach-bio">
+          <div class="coach-bio-text collapsed">
+            <p>Eight years ago I had big dreams of being an "independent woman." I just had no idea how to get there.</p>
+            <p>What I had going for me was the right circle and a lot of curiosity, so I started learning skills. And then I stayed in the learning phase for… a while. Take a course, try to do something with it, get stuck, stop, repeat. You know the cycle.</p>
+            <p>In 2019, on a bus to Ibadan, I heard about Fiverr and Upwork. People said they'd change my life, so I signed up to Fiverr that same day. I kept that account for ages and no matter what I did, it just wouldn't click.</p>
+            <p>Then 2021 happened. My friend started getting actual humans to actually pay her, and I was inspired. I picked up software development hoping to make it big in tech, and learned technical writing alongside it. I did a fellowship with Tech4Dev's Women Techsters, interned as a software developer at three different startups, and felt like I was finally moving.</p>
+            <p>Working at Paycrest, surrounded by genuinely fire developers, taught me two things. One, the well of tech was far deeper than I thought. Two, I wasn't ready to give everything it would take. So I pivoted.</p>
+            <p>I sat down and listed everything I was good at, and a surprising amount of my self-taught skills overlapped with management, admin and operations. On a call with Francis Ocholi, I decided this was the path, and that I'd stick with it until it paid off.</p>
+            <p>I picked Upwork and started sending proposals. I spent close to $400 on connects — roughly 3,000 of them — before I landed my first big-girl job. Then I became Top Rated, and Top Rated Plus, within months. All while studying engineering at Obafemi Awolowo University.</p>
+            <p>Last year knocked me down a bit. My biggest contract ended abruptly, and around the same time a different client left me a bad review — a genuine mistake. So I did what I always do. I sat with it and dug into what actually worked.</p>
+            <p>And I found it. There's a formula for going from no skill, to properly skilled, to landing clients.</p>
+            <p>So what's better than me making good money on Upwork? Me and a whole lot of other people doing the same. I've always loved it when people reached out to learn this, and I've always been happy to teach. But only a few ever applied what I showed them — usually because of information overload, or because the standard classroom structure just didn't fit them.</p>
+            <p>That's the gap PixelsnFiles exists to close.</p>
+            <p>Enough yapping. It's lovely to meet you. — <strong>Goga</strong></p>
+          </div>
+          <div class="coach-bio-fade" id="bio-fade"></div>
+        </div>
+        <button class="read-more" id="read-more-btn">
+          <span>Read more</span>
+          <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
         <div class="coach-proof">
-          <span class="proof-pill">Freelance coach</span>
-          <span class="proof-pill">CRM specialist</span>
-          <span class="proof-pill">PixelsnFiles facilitator</span>
+          <span class="proof-pill">Upwork Top Rated Plus</span>
+          <span class="proof-pill">Tech4Dev Women Techsters</span>
+          <span class="proof-pill">Engineering grad, OAU</span>
         </div>
       </div>
     </div>
@@ -617,6 +643,20 @@
     es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   }, {threshold:.12});
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+  // Read more / Read less toggle for coach bio
+  (function(){
+    const bioText = document.getElementById('read-more-btn') && document.querySelector('.coach-bio-text');
+    const btn = document.getElementById('read-more-btn');
+    const fade = document.getElementById('bio-fade');
+    if(!btn || !bioText) return;
+    btn.addEventListener('click', function(){
+      const open = this.classList.toggle('open');
+      bioText.classList.toggle('collapsed', !open);
+      if(fade) fade.classList.toggle('hidden', open);
+      this.querySelector('span').textContent = open ? 'Read less' : 'Read more';
+    });
+  })();
 
   // Workshop countdown — 4 July 2026, 5:00 PM WAT (UTC+1)
   (function(){
