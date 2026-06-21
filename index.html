@@ -110,6 +110,10 @@
   .ws-details dt{color:var(--denim);font-weight:500}
   .ws-details dd{color:var(--atlantic)}
   .ws-note{font-size:13px;color:var(--denim);margin-top:16px;max-width:38ch;margin-left:auto;margin-right:auto}
+  .countdown{display:flex;gap:10px;justify-content:center;margin:24px 0 28px}
+  .cd-item{background:var(--atlantic);border-radius:10px;padding:12px 14px;min-width:60px;text-align:center}
+  .cd-num{display:block;font-family:var(--display);font-size:34px;font-weight:500;color:var(--soft-butter);line-height:1}
+  .cd-label{display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--powder);margin-top:5px}
 
   /* COHORT */
   .cohort{background:var(--atlantic);color:var(--whipped);padding:0 0 clamp(60px,8vw,100px)}
@@ -319,15 +323,21 @@
       <!-- [EDIT] one-line description -->
       <p class="lede">One live session that maps the full route from no experience to your first paid client. Built for total beginners and for freelancers who have stalled along the way.</p>
       <dl class="ws-details">
-        <dt>Date</dt><dd>Saturday, 20th June 2026</dd>
-        <dt>Time</dt><dd>6:00pm, WAT</dd>
+        <dt>Date</dt><dd>Saturday, 4th July 2026</dd>
+        <dt>Time</dt><dd>5:00pm, WAT</dd>
         <dt>Format</dt><dd>Live on Google Meet, replay included</dd>
         <dt>You leave with</dt><dd>A clear roadmap and your next three steps</dd>
       </dl>
+      <div class="countdown" id="ws-countdown">
+        <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">days</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-hrs">00</span><span class="cd-label">hours</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-min">00</span><span class="cd-label">mins</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-sec">00</span><span class="cd-label">secs</span></div>
+      </div>
       <a href="https://lnk.ink/FromZeroSkillsToFirstClient" target="_blank" rel="noopener" class="btn btn-primary">Save my seat &rarr;</a>
       <p class="ws-note">Seats are limited so everyone can ask questions and get direct guidance. Once we reach capacity, we cannot take any more registrations.</p>
     </div>
-    <div class="photo ws-photo flyer-photo reveal"><img src="images/workshop-flyer.png" alt="From Zero Skill to First Client workshop flyer, 20th June 2026, 6pm WAT on Google Meet"></div>
+    <div class="photo ws-photo flyer-photo reveal"><img src="images/workshop-flyer.png" alt="From Zero Skill to First Client workshop flyer, 4th July 2026, 5pm WAT on Google Meet"></div>
   </div>
 </section>
 
@@ -594,6 +604,23 @@
     es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   }, {threshold:.12});
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+  // Workshop countdown — 4 July 2026, 5:00 PM WAT (UTC+1)
+  (function(){
+    const target = new Date('2026-07-04T16:00:00Z');
+    const el = document.getElementById('ws-countdown');
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const diff = target - Date.now();
+      if(diff <= 0){ el.style.display='none'; return; }
+      document.getElementById('cd-days').textContent = pad(Math.floor(diff/86400000));
+      document.getElementById('cd-hrs').textContent  = pad(Math.floor(diff%86400000/3600000));
+      document.getElementById('cd-min').textContent  = pad(Math.floor(diff%3600000/60000));
+      document.getElementById('cd-sec').textContent  = pad(Math.floor(diff%60000/1000));
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 
 </body>
