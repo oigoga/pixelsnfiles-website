@@ -18,7 +18,6 @@
     --classic-navy:#1B3559;
     --honeycomb:#E8B775;
     --white:#FFFDF7;
-
     --display:'Cormorant Garamond', Georgia, serif;
     --body:'Poppins', system-ui, sans-serif;
     --maxw:1180px;
@@ -27,14 +26,7 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--body);
-    background:var(--soft-butter);
-    color:var(--atlantic);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  body{font-family:var(--body);background:var(--soft-butter);color:var(--atlantic);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
   section{position:relative}
 
@@ -42,7 +34,6 @@
   .eyebrow{font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--denim)}
   .accent{color:var(--honeycomb)}
   .center{text-align:center}
-
   .wordmark{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;color:var(--atlantic);text-decoration:none;display:inline-block}
 
   .btn{font-family:var(--body);font-weight:500;font-size:14px;border:none;cursor:pointer;padding:14px 28px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:transform .25s,background .25s,color .25s,box-shadow .25s}
@@ -60,11 +51,10 @@
   .flower{position:absolute;z-index:2;pointer-events:none}
 
   .photo{border-radius:16px;background:linear-gradient(140deg,var(--powder),var(--whipped));position:relative;overflow:hidden;box-shadow:0 20px 44px -24px rgba(27,53,89,.45);border:5px solid var(--white)}
-  .photo::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--denim);opacity:.65}
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .photo img.fit-top{object-position:top center}
   .photo.flyer-photo{height:auto;background:var(--white)}
   .photo.flyer-photo img{width:100%;height:auto;object-fit:contain}
+  .on-navy .photo.flyer-photo{border-color:rgba(248,239,216,.15);background:transparent}
 
   nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);background:rgba(244,228,184,.82);border-bottom:1px solid rgba(79,107,138,.16)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
@@ -81,7 +71,7 @@
   .hero .eyebrow{margin-bottom:22px}
   .hero h1{font-size:clamp(52px,9vw,108px);margin-bottom:8px}
   .hero h1 em{font-style:italic;color:var(--denim)}
-  .hero .sub{display:block;max-width:50ch;margin:24px auto 0;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--denim);line-height:2}
+  .hero .sub{display:block;max-width:52ch;margin:24px auto 0;font-size:15px;font-weight:400;color:var(--denim);line-height:1.8}
   .hero-cta{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:36px}
   .hero-collage{position:relative;max-width:920px;margin:0 auto}
   .hero .blob1{width:230px;height:230px;background:var(--powder);left:-60px;top:-30px;opacity:.55}
@@ -94,6 +84,18 @@
   .sec-head h2{font-size:clamp(34px,5vw,58px)}
   .sec-head h2 em{font-style:italic;color:var(--denim)}
 
+  /* PAIN POINTS */
+  .pain{background:var(--powder);padding:clamp(60px,8vw,96px) 0}
+  .pain-head{text-align:center;margin-bottom:clamp(32px,4vw,48px)}
+  .pain-head .eyebrow{display:block;margin-bottom:12px}
+  .pain-head h2{font-size:clamp(26px,4vw,44px)}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pain-card{background:var(--white);border-radius:16px;padding:clamp(24px,3vw,36px);border-top:3px solid var(--honeycomb)}
+  .pain-card p{font-size:15px;color:var(--atlantic);line-height:1.75}
+  .pain-foot{text-align:center;margin-top:clamp(32px,4vw,48px)}
+  .pain-foot p{font-family:var(--display);font-style:italic;font-size:clamp(18px,2.4vw,26px);color:var(--atlantic);max-width:46ch;margin:0 auto 26px}
+
+  /* WORKSHOP */
   .workshop{background:var(--white);padding:clamp(60px,8vw,104px) 0}
   .ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center}
   .ws-grid>div:first-child{text-align:center}
@@ -107,26 +109,44 @@
   .ws-details{display:grid;grid-template-columns:auto auto;justify-content:center;gap:11px 20px;font-size:14px;margin-bottom:28px;padding:22px 0;border-top:1px solid var(--powder);border-bottom:1px solid var(--powder)}
   .ws-details dt{color:var(--denim);font-weight:500}
   .ws-details dd{color:var(--atlantic)}
-  .ws-note{font-size:13px;color:var(--denim);margin-top:16px}
+  .ws-note{font-size:13px;color:var(--denim);margin-top:16px;max-width:38ch;margin-left:auto;margin-right:auto}
 
+  /* COHORT */
   .cohort{background:var(--atlantic);color:var(--whipped);padding:0 0 clamp(60px,8vw,100px)}
   .scallop{display:block;width:100%;height:30px}
-  .cohort .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center;padding-top:clamp(40px,6vw,72px)}
-  .cohort-grid>div:last-child{text-align:center}
+  .cohort .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:start;padding-top:clamp(40px,6vw,72px)}
   .cohort h2{color:var(--soft-butter);font-size:clamp(36px,5vw,58px)}
-  .cohort .lede{color:var(--powder);max-width:48ch;margin:18px auto 30px;font-size:16px}
-  .feature-row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+  .cohort .lede{color:var(--powder);max-width:48ch;margin:18px auto 24px;font-size:16px}
+  .cohort-grid>div:last-child{text-align:center}
+  .feature-row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
   .feature{display:flex;align-items:center;gap:11px;font-size:13.5px;color:var(--whipped)}
   .feature .ic{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(215,222,232,.45);flex-shrink:0}
   .feature .ic svg{width:18px;height:18px;stroke:var(--powder)}
-  .cohort .ws-photo{height:420px;border-color:rgba(248,239,216,.9)}
   .tier-price{font-family:var(--display);font-size:clamp(30px,3.6vw,42px);color:var(--atlantic);line-height:1;margin-bottom:24px;display:block}
   .tier-price .per{font-family:var(--body);font-size:13px;font-weight:400;color:var(--denim);letter-spacing:.04em;margin-left:10px}
   .on-navy .tier-price{color:var(--soft-butter)}
   .on-navy .tier-price .per{color:var(--powder)}
 
+  /* COHORT CHECKLIST */
+  .check-list{list-style:none;text-align:left;margin:0 auto 28px;max-width:36ch}
+  .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--powder);padding:7px 0;border-bottom:1px solid rgba(215,222,232,.12)}
+  .check-list li:last-child{border-bottom:none}
+  .check-list .ck{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--honeycomb);display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .check-list .ck svg{width:10px;height:10px;stroke:var(--classic-navy);stroke-width:2.5;fill:none}
+
+  /* FOR YOU / NOT FOR YOU */
+  .fit-block{border-radius:14px;padding:clamp(18px,2vw,26px);margin:16px 0;text-align:left}
+  .fit-block.for-you{background:rgba(232,183,117,.12);border:1px solid rgba(232,183,117,.3)}
+  .fit-block.not-you{background:rgba(215,222,232,.07);border:1px solid rgba(215,222,232,.18)}
+  .fit-block h4{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;color:var(--honeycomb)}
+  .fit-block.not-you h4{color:var(--powder);opacity:.7}
+  .fit-item{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--powder);margin-bottom:7px;line-height:1.5}
+  .fit-item:last-child{margin-bottom:0}
+  .fit-icon{flex-shrink:0;margin-top:1px}
+
+  /* HIRED */
   .hired{background:var(--soft-butter);padding:clamp(64px,9vw,116px) 0;overflow:hidden}
-  .hired-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:center}
+  .hired-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);align-items:start}
   .hired-grid>div:first-child{text-align:center}
   .hired h2{font-size:clamp(36px,5vw,58px)}
   .hired h2 em{font-style:italic;color:var(--denim)}
@@ -135,23 +155,29 @@
   .hired .feature .ic svg{stroke:var(--denim)}
   .hired .feature{color:var(--atlantic)}
   .hired .blob1{width:260px;height:260px;background:var(--powder);right:-90px;top:40px;opacity:.45}
-  .hired-photo{height:440px}
 
-  .about{background:var(--white);padding:clamp(64px,9vw,116px) 0}
-  .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
-  .about-card{border-radius:20px;padding:clamp(28px,3vw,42px);position:relative;overflow:hidden}
-  .about-card .name{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;font-size:24px;margin-bottom:14px}
-  .about-card .role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:18px;display:block}
-  .about-card .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top center;margin-bottom:16px;border:2px solid rgba(248,239,216,.6)}
-  .about-card p{font-size:15px;line-height:1.7}
-  .card-pnf{background:var(--whipped);color:var(--atlantic)}
-  .card-pnf .name{color:var(--atlantic)}
-  .card-pnf .role{color:var(--denim)}
-  .card-oigoga{background:var(--atlantic);color:var(--powder)}
-  .card-oigoga .name{color:var(--soft-butter)}
-  .card-oigoga .role{color:var(--honeycomb)}
-  .about-tie{text-align:center;max-width:54ch;margin:0 auto;font-family:var(--display);font-style:italic;font-size:clamp(20px,2.6vw,28px);color:var(--denim)}
+  /* MEET THE COACH */
+  .coach{background:var(--white);padding:clamp(64px,9vw,116px) 0}
+  .coach-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(40px,6vw,72px);align-items:center}
+  .coach-photo{width:100%;border-radius:20px;overflow:hidden;box-shadow:0 20px 44px -24px rgba(27,53,89,.45);border:5px solid var(--whipped)}
+  .coach-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;display:block}
+  .coach-content .eyebrow{display:block;margin-bottom:14px}
+  .coach-content h2{font-size:clamp(30px,4.5vw,52px);margin-bottom:20px}
+  .coach-content h2 em{font-style:italic;color:var(--denim)}
+  .coach-content p{font-size:15px;color:var(--denim);line-height:1.8;margin-bottom:16px}
+  .coach-proof{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .proof-pill{background:var(--powder);border-radius:999px;padding:8px 18px;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--atlantic)}
 
+  /* TESTIMONIALS */
+  .testimonials{background:var(--whipped);padding:clamp(64px,9vw,100px) 0}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:clamp(32px,4vw,48px)}
+  .testi-card{background:var(--white);border-radius:16px;padding:clamp(22px,2.5vw,32px);position:relative}
+  .testi-card::before{content:'\201C';font-family:var(--display);font-size:64px;line-height:1;color:var(--honeycomb);position:absolute;top:14px;left:20px;opacity:.6}
+  .testi-body{font-size:14.5px;color:var(--atlantic);line-height:1.75;margin-top:32px}
+  .testi-name{margin-top:18px;font-weight:600;font-size:13px;color:var(--atlantic)}
+  .testi-tag{font-size:11px;color:var(--denim);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+
+  /* ROADMAP */
   .start{background:var(--powder);padding:clamp(64px,9vw,116px) 0;position:relative;overflow:hidden}
   .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-top:14px}
   .roadmap::before{content:'';position:absolute;top:26px;left:11%;right:11%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
@@ -162,6 +188,15 @@
   .step p{font-size:13.5px;color:var(--denim);max-width:24ch;margin:0 auto}
   .start .cta-row{text-align:center;margin-top:48px}
 
+  /* FAQ */
+  .faq{background:var(--white);padding:clamp(64px,9vw,116px) 0}
+  .faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);margin-top:clamp(36px,5vw,56px)}
+  .faq-col-head{font-size:clamp(20px,2.5vw,28px);margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid var(--powder)}
+  .faq-item{padding:18px 0;border-bottom:1px solid var(--powder)}
+  .faq-q{font-weight:600;font-size:14.5px;color:var(--atlantic);margin-bottom:8px}
+  .faq-a{font-size:14px;color:var(--denim);line-height:1.7}
+
+  /* CONTACT */
   .contact{background:var(--classic-navy);color:var(--powder);padding:clamp(64px,9vw,112px) 0}
   .contact .sec-head h2{color:var(--soft-butter)}
   .contact .sec-head .eyebrow{color:var(--honeycomb)}
@@ -187,8 +222,7 @@
   .socials a:hover{background:var(--honeycomb);border-color:var(--honeycomb)}
   .socials a:hover svg{stroke:var(--classic-navy)}
   .socials svg{width:17px;height:17px;stroke:var(--powder);fill:none}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(215,222,232,.7)}
-  .foot-bottom .family .ow{font-family:var(--body);font-weight:700;letter-spacing:-.04em;text-transform:lowercase;color:var(--whipped)}
+  .foot-bottom{display:flex;justify-content:flex-start;align-items:center;padding-top:28px;font-size:12.5px;color:rgba(215,222,232,.7)}
 
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
   .reveal.in{opacity:1;transform:none}
@@ -196,9 +230,11 @@
   @media(max-width:760px){
     .nav-links{display:none}
     .menu-btn{display:block}
-    .ws-grid,.cohort-grid,.hired-grid,.about-cards{grid-template-columns:1fr;gap:30px}
-    .ws-photo,.hired-photo{height:300px}
-    .cohort .ws-photo{height:300px}
+    .ws-grid,.cohort-grid,.hired-grid,.coach-grid{grid-template-columns:1fr;gap:30px}
+    .pain-grid{grid-template-columns:1fr;gap:20px}
+    .ws-photo{height:300px}
+    .testi-grid{grid-template-columns:1fr;gap:20px}
+    .faq-cols{grid-template-columns:1fr;gap:36px}
     .roadmap{grid-template-columns:1fr;gap:30px}
     .roadmap::before{display:none}
     .foot-top{grid-template-columns:1fr;gap:30px}
@@ -215,7 +251,7 @@
       <a href="#workshop">Workshop</a>
       <a href="#cohort">Cohort</a>
       <a href="#hired">Full Track</a>
-      <a href="#about">About</a>
+      <a href="#coach">Meet Oigoga</a>
       <a href="#start">Get started</a>
       <a href="#workshop" class="btn btn-primary">Save my seat</a>
     </div>
@@ -247,6 +283,31 @@
   </div>
 </header>
 
+<!-- ===== 1b · PAIN POINTS ===== -->
+<section class="pain">
+  <div class="wrap">
+    <div class="pain-head reveal">
+      <span class="eyebrow">Sound familiar?</span>
+      <h2>You've done everything they said.<br>So why are you still stuck?</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <p>You've watched the YouTube videos. You've taken the courses. You've learned the skills. But when it comes to actually getting a paying client — nothing. You don't know why it isn't working.</p>
+      </div>
+      <div class="pain-card reveal">
+        <p>You're applying and hearing nothing back. Your proposals get ignored. You don't know what to say on a discovery call, let alone how to close one. You have skills no one can see.</p>
+      </div>
+      <div class="pain-card reveal">
+        <p>There is advice everywhere and none of it fits your situation. You don't need more content. You need a clear path and someone to walk it with you, start to finish.</p>
+      </div>
+    </div>
+    <div class="pain-foot reveal">
+      <p>That is exactly what pixelsnfiles is built for.</p>
+      <a href="#workshop" class="btn btn-primary">Start here &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 2 · NEXT WORKSHOP (swap zone) ===== -->
 <!-- SWAP ZONE: replace this section each month. Editable bits marked [EDIT]. -->
 <section class="workshop" id="workshop">
@@ -264,7 +325,7 @@
         <dt>You leave with</dt><dd>A clear roadmap and your next three steps</dd>
       </dl>
       <a href="https://lnk.ink/FromZeroSkillsToFirstClient" target="_blank" rel="noopener" class="btn btn-primary">Save my seat &rarr;</a>
-      <p class="ws-note">We cap each room so it stays useful. Seats go in order of registration.</p>
+      <p class="ws-note">Seats are limited so everyone can ask questions and get direct guidance. Once we reach capacity, we cannot take any more registrations.</p>
     </div>
     <div class="photo ws-photo flyer-photo reveal"><img src="images/workshop-flyer.png" alt="From Zero Skill to First Client workshop flyer, 20th June 2026, 6pm WAT on Google Meet"></div>
   </div>
@@ -276,16 +337,32 @@
     <path d="M0,30 L0,16 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 q30,-22 60,0 L1200,30 Z" fill="#2F4A6B"/>
   </svg>
   <div class="wrap cohort-grid">
-    <div class="photo ws-photo reveal" data-label="cohort photo"></div>
+    <div class="photo flyer-photo reveal"><img src="images/cohort-flyer.jpg" alt="PixelsnFiles Cohort — Six weeks to Client Ready"></div>
     <div class="reveal">
       <span class="eyebrow" style="color:var(--powder);display:block;margin-bottom:14px">The Cohort · 6 weeks · Small group</span>
       <h2>Six weeks to client-ready.</h2>
-      <p class="lede">Maybe you've got some skills but nothing to show for them &mdash; no portfolio, no proposals that land, no idea how to close a discovery call. Or maybe you're starting from zero and want the fast track. Either way, in six weeks you'll leave with a full portfolio of real task packs, proposals that convert, and the skills to sell yourself and close clients on discovery calls.</p>
-      <p class="lede" style="font-size:14px;margin-top:-12px">We get you ready and equipped. The applying is yours to do &mdash; and you'll know exactly how.</p>
-      <div class="feature-row">
-        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Full portfolio</div>
-        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/></svg></span>Converting proposals</div>
-        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></span>Closing clients</div>
+      <p class="lede">Whether you have some skills but no portfolio to prove it, or you're starting from zero — in six weeks you will leave with everything you need to go out and land your first client.</p>
+      <ul class="check-list">
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A complete professional portfolio</li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Ready-to-use proposal templates</li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Discovery call scripts</li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Client communication templates</li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Real-world task packs</li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>A clear client acquisition strategy</li>
+      </ul>
+      <div class="fit-block for-you">
+        <h4>This is for you if</h4>
+        <div class="fit-item"><span class="fit-icon">✓</span>You're completely new to freelancing</div>
+        <div class="fit-item"><span class="fit-icon">✓</span>You've learned skills but haven't landed clients</div>
+        <div class="fit-item"><span class="fit-icon">✓</span>You want a structured path instead of guessing</div>
+        <div class="fit-item"><span class="fit-icon">✓</span>You're willing to put in the work</div>
+        <div class="fit-item"><span class="fit-icon">✓</span>You want guidance and accountability</div>
+      </div>
+      <div class="fit-block not-you">
+        <h4>This is not for you if</h4>
+        <div class="fit-item"><span class="fit-icon">✗</span>You're looking for overnight success</div>
+        <div class="fit-item"><span class="fit-icon">✗</span>You don't want to take action</div>
+        <div class="fit-item"><span class="fit-icon">✗</span>You're unwilling to practise and apply</div>
       </div>
       <!-- [CONFIRM] cohort price still has a question mark in your doc -->
       <span class="tier-price">&#8358;50,000<span class="per">· six weeks, group</span></span>
@@ -294,51 +371,85 @@
   </div>
 </section>
 
-<!-- ===== 4 · HIRED TIER / FULL TRACK (butter) ===== -->
+<!-- ===== 4 · FULL TRACK (butter) ===== -->
 <section class="hired" id="hired">
   <span class="blob blob1"></span>
   <div class="wrap hired-grid">
     <div class="reveal">
       <span class="eyebrow" style="display:block;margin-bottom:14px">The Full Track · Specialist · One to one</span>
       <h2>Beginner to hired. <em>Train as a specialist.</em></h2>
-      <p class="lede">This is the full journey, one to one: from absolute beginner all the way through to landing your first client. Train as a CRM Specialist through the Phase 2 curriculum &mdash; now 6 months, not 12 &mdash; with my eyes on your work at every step and lifetime access to me. You want my time, attention and experience on just you &mdash; this is the one you pick.</p>
+      <p class="lede">This is the full journey, one to one: from absolute beginner all the way through to landing your first client. Train as a CRM Specialist through the Phase 2 curriculum — 6 months, with my eyes on your work at every step and lifetime access to my community. You want my time, attention and experience on just you — this is the one you pick.</p>
       <div class="feature-row">
         <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l2.4 6.6L21 9l-5 4.2L17.6 20 12 16.3 6.4 20 8 13.2 3 9l6.6-.4z"/></svg></span>CRM specialism</div>
         <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><circle cx="16" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5M15.5 20c0-2.2 1.5-3.5 3.5-3.5"/></svg></span>One to one</div>
-        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>Lifetime access</div>
+        <div class="feature"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>Community access</div>
       </div>
       <span class="tier-price">&#8358;300,000<span class="per">· one to one, 6-month track</span></span>
       <a href="#" class="btn btn-primary">Apply for my spot &rarr;</a>
     </div>
-    <div class="photo hired-photo reveal" data-label="full track photo"></div>
+    <div class="photo flyer-photo reveal"><img src="images/fulltrack-flyer.jpg" alt="PixelsnFiles Full Track — Beginner to hired, train as a specialist"></div>
   </div>
 </section>
 
-<!-- ===== 5 · ABOUT PNF + OIGOGA ===== -->
-<section class="about" id="about">
+<!-- ===== 5 · MEET THE COACH ===== -->
+<section class="coach" id="coach">
+  <div class="wrap">
+    <div class="coach-grid">
+      <div class="reveal">
+        <div class="coach-photo">
+          <img src="images/oigoga-portrait.jpg" alt="Oigoga Elisabeth">
+        </div>
+      </div>
+      <div class="coach-content reveal">
+        <span class="eyebrow">Meet your coach</span>
+        <!-- [EDIT] Replace h2 sub-line and paragraphs with Oigoga's real story — background, how she got into freelancing, income/client milestones, years of experience, what makes her different -->
+        <h2>Hi, I'm Oigoga.<br><em>I've been where you are.</em></h2>
+        <p>I started from zero. No connections, no fancy CV, no one to show me the way. I figured it out — and then I figured it out again, and again, because that's what freelancing actually is. Each time I got better at the thing that matters: turning skills into income.</p>
+        <p>Now I work with pixelsnfiles to do for you what no YouTube video ever did for me — give you a real path, real tasks, and someone who stays in the room with you until it works.</p>
+        <p>Everything in the cohort and the full track is built from what I actually did, not what sounds good in a webinar.</p>
+        <!-- [EDIT] Replace pills with real proof points — e.g. "X clients coached", "Y years freelancing", specific credential, platform, niche -->
+        <div class="coach-proof">
+          <span class="proof-pill">Freelance coach</span>
+          <span class="proof-pill">CRM specialist</span>
+          <span class="proof-pill">PixelsnFiles facilitator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6 · TESTIMONIALS ===== -->
+<!-- [EDIT] Replace placeholder quotes below with real testimonials from workshop attendees and cohort members -->
+<section class="testimonials" id="testimonials">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">The family</span>
-      <h2>Two brands, <em>one system.</em></h2>
+      <span class="eyebrow">What people are saying</span>
+      <h2>Small wins, <em>real results.</em></h2>
     </div>
-    <div class="about-cards">
-      <div class="about-card card-pnf reveal">
-        <div class="name">pixels<span class="accent">n</span>files<span class="accent">.</span></div>
-        <span class="role">The training ground</span>
-        <p>PixelsnFiles is where the work happens. The workshops, the cohort, the curriculum, the task packs, the standard. It is the engine room that takes someone from no experience to a portfolio they can stand behind.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <p class="testi-body">I used the proposal writing framework from the workshop and my proposal got viewed for the first time ever. I didn't even realise what I was sending before wasn't getting opened.</p>
+        <!-- [EDIT] Replace with real name and context -->
+        <div class="testi-name">Workshop attendee</div>
+        <div class="testi-tag">Replace with real name</div>
       </div>
-      <div class="about-card card-oigoga reveal">
-        <img class="avatar" src="images/oigoga-portrait.jpg" alt="Oigoga Elisabeth">
-        <div class="name">oigoga<span class="accent">.</span></div>
-        <span class="role">The coaching brand</span>
-        <p>Oigoga is the brand out front. The voice, the community, the person showing you it can be done, more than once, from the ground up. It is how people find their way in.</p>
+      <div class="testi-card reveal">
+        <p class="testi-body">I heard people talk about freelancing and making money online but I didn't know where to start. After six weeks in the cohort, I had an entire portfolio of projects I could show any client — and I knew exactly how to pitch myself.</p>
+        <!-- [EDIT] Replace with real name and context -->
+        <div class="testi-name">Cohort member</div>
+        <div class="testi-tag">Replace with real name</div>
+      </div>
+      <div class="testi-card reveal">
+        <p class="testi-body">Before the workshop I had the skills but no idea how to turn them into income. The clarity I got in that one session was more than I got from months of watching videos on my own.</p>
+        <!-- [EDIT] Replace with real name and context -->
+        <div class="testi-name">Workshop attendee</div>
+        <div class="testi-tag">Replace with real name</div>
       </div>
     </div>
-    <p class="about-tie reveal">Oigoga is working with pixelsnfiles to get more people hired as freelancers.</p>
   </div>
 </section>
 
-<!-- ===== 6 · GET STARTED + ROADMAP ===== -->
+<!-- ===== 7 · GET STARTED + ROADMAP ===== -->
 <section class="start" id="start">
   <div class="wrap">
     <div class="sec-head center reveal">
@@ -373,7 +484,55 @@
   </div>
 </section>
 
-<!-- ===== 7 · CONTACT (navy) ===== -->
+<!-- ===== 8 · FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Got one? <em>We probably have the answer.</em></h2>
+    </div>
+    <div class="faq-cols">
+      <div class="reveal">
+        <h3 class="faq-col-head">The Cohort</h3>
+        <div class="faq-item">
+          <p class="faq-q">What if I don't have any experience — is six weeks enough?</p>
+          <p class="faq-a">Yes. The cohort is built for total beginners and for people who have some skills but are stuck. You don't need experience to start, you need to show up and do the work. By week six you will have a portfolio and everything you need to go after clients.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">How much time do I need to commit each week?</p>
+          <!-- [EDIT] Fill in the expected weekly time commitment -->
+          <p class="faq-a">Add your answer here — e.g. X hours per week, what sessions look like, when live calls happen etc.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Will I actually have a portfolio by the end?</p>
+          <p class="faq-a">Yes — that's the whole point. The cohort is built around real task packs that become portfolio pieces. You don't just learn, you produce. By the end you will have work you can send to any client.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 class="faq-col-head">The Full Track</h3>
+        <div class="faq-item">
+          <p class="faq-q">Why is it 6 months?</p>
+          <p class="faq-a">Training as a CRM Specialist takes depth, not just breadth. Six months gives you time to learn the skills, practise them properly, build your portfolio, and land your first client — without rushing or cutting corners.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What does the one-to-one support include?</p>
+          <!-- [EDIT] Fill in what one-to-one actually looks like — calls, work reviews, messaging, response time etc. -->
+          <p class="faq-a">Add your answer here — e.g. weekly check-ins, direct feedback on submissions, access via WhatsApp/email, how quickly you respond etc.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What happens after the training?</p>
+          <p class="faq-a">You keep lifetime access to the community and all the materials. The goal is for you to land your first client during the six months — we stay in it with you until that happens.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Is there a payment plan?</p>
+          <p class="faq-a">Yes. You can pay in up to five instalments. Book a call and we will walk you through the options.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9 · CONTACT (navy) ===== -->
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="sec-head center reveal">
@@ -392,7 +551,7 @@
   </div>
 </section>
 
-<!-- ===== 8 · FOOTER ===== -->
+<!-- ===== 10 · FOOTER ===== -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
@@ -426,7 +585,6 @@
     </div>
     <div class="foot-bottom">
       <span>&copy; 2026 PixelsnFiles. All rights reserved.</span>
-      <span class="family">Sister brand <span class="ow">oigoga<span class="accent">.</span></span></span>
     </div>
   </div>
 </footer>
