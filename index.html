@@ -172,7 +172,7 @@
   .coach-content h2{font-size:clamp(30px,4.5vw,52px);margin-bottom:20px}
   .coach-content h2 em{font-style:italic;color:var(--denim)}
   .coach-bio{position:relative;margin-bottom:4px}
-  .coach-bio-text{overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1)}
+  .coach-bio-text{overflow:hidden;max-height:2000px;transition:max-height .55s cubic-bezier(.4,0,.2,1)}
   .coach-bio-text.collapsed{max-height:145px}
   .coach-bio-text p{font-size:15px;color:var(--denim);line-height:1.85;margin-bottom:15px}
   .coach-bio-text p:last-child{margin-bottom:0}
@@ -182,8 +182,11 @@
   .read-more:hover{color:var(--honeycomb)}
   .read-more svg{width:13px;height:13px;stroke:currentColor;fill:none;transition:transform .3s}
   .read-more.open svg{transform:rotate(180deg)}
-  .coach-proof{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-  .proof-pill{background:var(--powder);border-radius:999px;padding:8px 18px;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--atlantic)}
+  .coach-inline-img{display:none;float:left;width:clamp(130px,18%,170px);margin:4px 24px 12px 0;border-radius:14px;overflow:hidden;border:4px solid var(--whipped);shape-outside:content-box}
+  .coach-inline-img img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .coach.expanded .coach-grid{display:block}
+  .coach.expanded .coach-photo-col{display:none}
+  .coach.expanded .coach-inline-img{display:block}
 
   /* TESTIMONIALS */
   .testimonials{background:var(--whipped);padding:clamp(64px,9vw,100px) 0}
@@ -196,22 +199,34 @@
 
   /* ROADMAP */
   .start{background:var(--powder);padding:clamp(64px,9vw,116px) 0;position:relative;overflow:hidden}
-  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-top:14px}
-  .roadmap::before{content:'';position:absolute;top:26px;left:11%;right:11%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
+  .roadmap{display:grid;grid-template-columns:1fr 1fr 1.8fr;gap:20px;position:relative;margin-top:14px}
+  .roadmap::before{content:'';position:absolute;top:26px;left:9%;right:52%;height:2px;background:repeating-linear-gradient(90deg,var(--denim) 0 8px,transparent 8px 16px);opacity:.5;z-index:0}
   .step{position:relative;z-index:1;text-align:center}
   .step .num{width:54px;height:54px;border-radius:50%;background:var(--white);border:1.5px solid var(--atlantic);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;color:var(--atlantic);margin:0 auto 18px}
   .step.first .num{background:var(--atlantic);color:var(--soft-butter);border-color:var(--atlantic)}
   .step h3{font-size:20px;margin-bottom:8px}
   .step p{font-size:13.5px;color:var(--denim);max-width:24ch;margin:0 auto}
+  .step-fork{position:relative;z-index:1;text-align:center}
+  .step-fork .num{width:54px;height:54px;border-radius:50%;background:var(--white);border:1.5px solid var(--atlantic);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;color:var(--atlantic);margin:0 auto 14px}
+  .step-fork h3{font-size:20px;margin-bottom:14px}
+  .fork-paths{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+  .fork-path{background:var(--white);border-radius:10px;padding:14px 16px;border-left:3px solid var(--honeycomb)}
+  .fork-path strong{display:block;font-size:13px;color:var(--atlantic);font-weight:600;margin-bottom:4px}
+  .fork-path p{font-size:12px;color:var(--denim);line-height:1.5;margin:0}
   .start .cta-row{text-align:center;margin-top:48px}
 
   /* FAQ */
   .faq{background:var(--white);padding:clamp(64px,9vw,116px) 0}
   .faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);margin-top:clamp(36px,5vw,56px)}
-  .faq-col-head{font-size:clamp(20px,2.5vw,28px);margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid var(--powder)}
-  .faq-item{padding:18px 0;border-bottom:1px solid var(--powder)}
-  .faq-q{font-weight:600;font-size:14.5px;color:var(--atlantic);margin-bottom:8px}
-  .faq-a{font-size:14px;color:var(--denim);line-height:1.7}
+  .faq-col-head{font-size:clamp(20px,2.5vw,28px);margin-bottom:4px;padding-bottom:14px;border-bottom:2px solid var(--powder)}
+  .faq-item{border-bottom:1px solid var(--powder)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--atlantic);padding:16px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s}
+  .faq-q:hover{color:var(--denim)}
+  .faq-q svg{flex-shrink:0;width:15px;height:15px;stroke:var(--denim);fill:none;transition:transform .3s}
+  .faq-q.open svg{transform:rotate(180deg)}
+  .faq-a{overflow:hidden;max-height:0;transition:max-height .4s ease}
+  .faq-a.open{max-height:400px}
+  .faq-a-inner{font-size:14px;color:var(--denim);line-height:1.7;padding-bottom:16px}
 
   /* CONTACT */
   .contact{background:var(--classic-navy);color:var(--powder);padding:clamp(64px,9vw,112px) 0}
@@ -252,8 +267,9 @@
     .ws-photo{height:300px}
     .testi-grid{grid-template-columns:1fr;gap:20px}
     .faq-cols{grid-template-columns:1fr;gap:36px}
-    .roadmap{grid-template-columns:1fr;gap:30px}
+    .roadmap{grid-template-columns:1fr;gap:24px}
     .roadmap::before{display:none}
+    .fork-paths{grid-template-columns:1fr;gap:8px}
     .foot-top{grid-template-columns:1fr;gap:30px}
   }
 </style>
@@ -428,7 +444,7 @@
 <section class="coach" id="coach">
   <div class="wrap">
     <div class="coach-grid">
-      <div class="reveal">
+      <div class="coach-photo-col reveal">
         <div class="coach-photo">
           <img src="images/oigoga-headshot.jpg" alt="Oigoga Elisabeth">
         </div>
@@ -438,6 +454,7 @@
         <h2>Hi, I'm Oigoga.<br><em>I've been where you are.</em></h2>
         <div class="coach-bio">
           <div class="coach-bio-text collapsed">
+            <img class="coach-inline-img" src="images/oigoga-headshot.jpg" alt="Oigoga Elisabeth">
             <p>Eight years ago I had big dreams of being an "independent woman." I just had no idea how to get there.</p>
             <p>What I had going for me was the right circle and a lot of curiosity, so I started learning skills. And then I stayed in the learning phase for… a while. Take a course, try to do something with it, get stuck, stop, repeat. You know the cycle.</p>
             <p>In 2019, on a bus to Ibadan, I heard about Fiverr and Upwork. People said they'd change my life, so I signed up to Fiverr that same day. I kept that account for ages and no matter what I did, it just wouldn't click.</p>
@@ -457,11 +474,6 @@
           <span>Read more</span>
           <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="coach-proof">
-          <span class="proof-pill">Upwork Top Rated Plus</span>
-          <span class="proof-pill">Tech4Dev Women Techsters</span>
-          <span class="proof-pill">Engineering grad, OAU</span>
-        </div>
       </div>
     </div>
   </div>
@@ -516,15 +528,19 @@
         <h3>Join a workshop</h3>
         <p>Find your footing on one skill in a single live session.</p>
       </div>
-      <div class="step reveal">
+      <div class="step-fork reveal">
         <div class="num">3</div>
-        <h3>Run the cohort</h3>
-        <p>Build a full portfolio, write proposals that convert, and learn to close clients.</p>
-      </div>
-      <div class="step reveal">
-        <div class="num">4</div>
-        <h3>Go one to one</h3>
-        <p>Train as a specialist in 6 months, one to one, through to your first client.</p>
+        <h3>Choose your path</h3>
+        <div class="fork-paths">
+          <div class="fork-path">
+            <strong>Cohort → Full Track</strong>
+            <p>Build your portfolio and get client-ready in 6 weeks, then go into the Full Track for one-to-one specialist training.</p>
+          </div>
+          <div class="fork-path">
+            <strong>Full Track directly</strong>
+            <p>Go one to one straight from the workshop — all the way through to your first client.</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cta-row reveal">
@@ -544,37 +560,37 @@
       <div class="reveal">
         <h3 class="faq-col-head">The Cohort</h3>
         <div class="faq-item">
-          <p class="faq-q">What if I don't have any experience — is six weeks enough?</p>
-          <p class="faq-a">Yes. The cohort is built for total beginners and for people who have some skills but are stuck. You don't need experience to start, you need to show up and do the work. By week six you will have a portfolio and everything you need to go after clients.</p>
+          <button class="faq-q">What if I don't have any experience — is six weeks enough? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. The cohort is built for total beginners and for people who have some skills but are stuck. You don't need experience to start, you need to show up and do the work. By week six you will have a portfolio and everything you need to go after clients.</div></div>
         </div>
         <div class="faq-item">
-          <p class="faq-q">How much time do I need to commit each week?</p>
+          <button class="faq-q">How much time do I need to commit each week? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
           <!-- [EDIT] Fill in the expected weekly time commitment -->
-          <p class="faq-a">Add your answer here — e.g. X hours per week, what sessions look like, when live calls happen etc.</p>
+          <div class="faq-a"><div class="faq-a-inner">Add your answer here — e.g. X hours per week, what sessions look like, when live calls happen etc.</div></div>
         </div>
         <div class="faq-item">
-          <p class="faq-q">Will I actually have a portfolio by the end?</p>
-          <p class="faq-a">Yes — that's the whole point. The cohort is built around real task packs that become portfolio pieces. You don't just learn, you produce. By the end you will have work you can send to any client.</p>
+          <button class="faq-q">Will I actually have a portfolio by the end? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes — that's the whole point. The cohort is built around real task packs that become portfolio pieces. You don't just learn, you produce. By the end you will have work you can send to any client.</div></div>
         </div>
       </div>
       <div class="reveal">
         <h3 class="faq-col-head">The Full Track</h3>
         <div class="faq-item">
-          <p class="faq-q">Why is it 6 months?</p>
-          <p class="faq-a">Training as a CRM Specialist takes depth, not just breadth. Six months gives you time to learn the skills, practise them properly, build your portfolio, and land your first client — without rushing or cutting corners.</p>
+          <button class="faq-q">Why is it 6 months? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Training as a CRM Specialist takes depth, not just breadth. Six months gives you time to learn the skills, practise them properly, build your portfolio, and land your first client — without rushing or cutting corners.</div></div>
         </div>
         <div class="faq-item">
-          <p class="faq-q">What does the one-to-one support include?</p>
+          <button class="faq-q">What does the one-to-one support include? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
           <!-- [EDIT] Fill in what one-to-one actually looks like — calls, work reviews, messaging, response time etc. -->
-          <p class="faq-a">Add your answer here — e.g. weekly check-ins, direct feedback on submissions, access via WhatsApp/email, how quickly you respond etc.</p>
+          <div class="faq-a"><div class="faq-a-inner">Add your answer here — e.g. weekly check-ins, direct feedback on submissions, access via WhatsApp/email, how quickly you respond etc.</div></div>
         </div>
         <div class="faq-item">
-          <p class="faq-q">What happens after the training?</p>
-          <p class="faq-a">You keep lifetime access to the community and all the materials. The goal is for you to land your first client during the six months — we stay in it with you until that happens.</p>
+          <button class="faq-q">What happens after the training? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">You keep lifetime access to the community and all the materials. The goal is for you to land your first client during the six months — we stay in it with you until that happens.</div></div>
         </div>
         <div class="faq-item">
-          <p class="faq-q">Is there a payment plan?</p>
-          <p class="faq-a">Yes. You can pay in up to five instalments. Book a call and we will walk you through the options.</p>
+          <button class="faq-q">Is there a payment plan? <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. You can pay in up to five instalments. Book a call and we will walk you through the options.</div></div>
         </div>
       </div>
     </div>
@@ -646,17 +662,27 @@
 
   // Read more / Read less toggle for coach bio
   (function(){
-    const bioText = document.getElementById('read-more-btn') && document.querySelector('.coach-bio-text');
+    const bioText = document.querySelector('.coach-bio-text');
     const btn = document.getElementById('read-more-btn');
     const fade = document.getElementById('bio-fade');
+    const coachSection = document.querySelector('.coach');
     if(!btn || !bioText) return;
     btn.addEventListener('click', function(){
       const open = this.classList.toggle('open');
       bioText.classList.toggle('collapsed', !open);
       if(fade) fade.classList.toggle('hidden', open);
+      if(coachSection) coachSection.classList.toggle('expanded', open);
       this.querySelector('span').textContent = open ? 'Read less' : 'Read more';
     });
   })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const isOpen = this.classList.toggle('open');
+      this.nextElementSibling.classList.toggle('open', isOpen);
+    });
+  });
 
   // Workshop countdown — 4 July 2026, 5:00 PM WAT (UTC+1)
   (function(){
