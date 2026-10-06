@@ -160,7 +160,7 @@ button:hover { filter: brightness(1.08); }
       <input id="certno" name="certno" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="PNF-C01-000">
       <button type="submit">Verify</button>
     </form>
-    <p class="hint">Dashes and capitals are optional. <button type="button" class="linkish" id="trySample">Try the sample certificate</button></p>
+    <p class="hint">Dashes and capitals are optional.</p>
   </section>
 
   <section id="result" aria-live="polite"></section>
@@ -176,13 +176,36 @@ button:hover { filter: brightness(1.08); }
 /*
   REGISTER
   One line per certificate, copied from the certificate register sheet.
-  Remove the sample line before the page goes live.
 */
 var REGISTER = [
-  { id: "PNF-C01-000", name: "Sample Graduate", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-17", programme: "Remote Work Cohort", sample: true }
+  { id: "PNF-C01-001", name: "Anita Kevin", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-002", name: "Caleb Nimrod Ayeni", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-003", name: "Eunice Adebanjo", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-004", name: "Ewaoluwa", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-005", name: "Fatiha Omonike Ibrahim", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-006", name: "Favour Eriesiri Eghrudje", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-007", name: "Favour Hunu Daudu", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-008", name: "Gabriella", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-009", name: "Hephzibah Toluwanimi Idowu", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-010", name: "Ishioma Thelma Okonye", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-011", name: "Joshua", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-012", name: "Joy Enewa Eche", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-013", name: "Lucie Babalola", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-014", name: "Mary Ajose", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-015", name: "Ndidi Vivian Akubuko", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-016", name: "Nkwonta Chimamanda", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-017", name: "Onyinye", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-018", name: "Peter Goodness Oluchi", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-019", name: "Pius Adoyi", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-020", name: "Praise", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-021", name: "Precious", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-022", name: "Precious", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-023", name: "Prevail", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-024", name: "Priscilla Bmyashi", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-025", name: "Shitu", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-026", name: "Timothy Gideon", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" },
+  { id: "PNF-C01-027", name: "Tseaa Doose Joy", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-06", programme: "Remote Work Cohort" }
 ];
-
-var SAMPLE_ID = "PNF-C01-000";
 
 function normalise(raw) {
   var s = String(raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -278,14 +301,9 @@ document.getElementById("lookup").addEventListener("submit", function (e) {
   render(v.trim());
 });
 
-document.getElementById("trySample").addEventListener("click", function () {
-  document.getElementById("certno").value = SAMPLE_ID;
-  render(SAMPLE_ID);
-});
-
 (function start() {
   var fromUrl = idFromUrl();
-  var initial = fromUrl || (findRecord(SAMPLE_ID) ? SAMPLE_ID : "");
+  var initial = fromUrl;
   if (initial) {
     var id = normalise(initial);
     document.getElementById("certno").value = id || initial;
