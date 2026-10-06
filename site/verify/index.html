@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verify a certificate | pixelsnfiles</title>
+<meta name="description" content="Check that a PixelsnFiles certificate is genuine by entering its certificate number.">
+<link rel="canonical" href="https://pixelsnfiles.com/verify/">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+/* Layout: one quiet centred column, lookup on top, the certificate record below it, styled like a card cut from the certificate itself */
+:root {
+  --bg: #FFFFFF;          /* white ground */
+  --grid: rgba(47,74,107,0.07); /* faint Atlantic grid lines */
+  --panel: #F8EFD8;       /* Whipped Cream */
+  --ink: #1B3559;         /* Classic Navy */
+  --head: #2F4A6B;        /* Atlantic */
+  --muted: #4F6B8A;       /* Denim */
+  --line: rgba(79,107,138,0.38);
+  --field: #FFFDF7;
+  --pill-bg: #2F4A6B;
+  --pill-fg: #F8EFD8;
+  --honey: #E8B775;
+  --focus: #2F4A6B;
+  --display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --body: 'Poppins', 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12233B; --grid: rgba(215,222,232,0.06); --panel: #1B3559; --ink: #F8EFD8; --head: #F4E4B8; --muted: #D7DEE8;
+    --line: rgba(215,222,232,0.28); --field: #13263F; --pill-bg: #F4E4B8; --pill-fg: #1B3559;
+    --honey: #E8B775; --focus: #F4E4B8; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12233B; --grid: rgba(215,222,232,0.06); --panel: #1B3559; --ink: #F8EFD8; --head: #F4E4B8; --muted: #D7DEE8;
+  --line: rgba(215,222,232,0.28); --field: #13263F; --pill-bg: #F4E4B8; --pill-fg: #1B3559;
+  --honey: #E8B775; --focus: #F4E4B8; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.65;
+  padding-inline: 20px;
+  padding-block: 40px 56px;
+}
+.wrap { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+
+.wordmark {
+  font-family: var(--body); font-weight: 700; font-size: 22px; letter-spacing: -0.04em;
+  color: var(--head); line-height: 1; text-decoration: none; align-self: flex-start;
+}
+.wordmark span { color: var(--honey); }
+
+.eyebrow {
+  font-weight: 600; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 14px;
+}
+h1 {
+  font-family: var(--display); font-weight: 500; font-size: clamp(36px, 7vw, 52px);
+  line-height: 1.05; color: var(--head); margin: 0 0 14px; text-wrap: balance;
+}
+.lede { margin: 0; color: var(--muted); max-width: 52ch; }
+.lede code {
+  font-family: var(--body); font-weight: 500; font-size: 0.92em; letter-spacing: 0.06em; color: var(--ink);
+  white-space: nowrap;
+}
+
+form { display: flex; flex-wrap: wrap; gap: 10px; }
+label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input {
+  flex: 1 1 260px; min-width: 0;
+  font: 500 16px/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); background: var(--field);
+  border: 1px solid var(--line); border-radius: 2px;
+  padding: 15px 16px; min-height: 52px;
+}
+input::placeholder { color: var(--muted); opacity: 0.7; letter-spacing: 0.08em; }
+input:focus-visible, button:focus-visible, .linkish:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+button {
+  flex: 0 0 auto;
+  font: 600 13px/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--pill-fg); background: var(--pill-bg);
+  border: 0; border-radius: 2px; padding: 0 26px; min-height: 52px; cursor: pointer;
+}
+button:hover { filter: brightness(1.08); }
+.hint { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+.linkish {
+  font: inherit; color: var(--head); background: none; border: 0; padding: 0; min-height: 0;
+  letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+
+/* Record card, echoing the certificate's double frame */
+.record { background: var(--panel); padding: 12px; }
+.record-inner {
+  border: 1px solid var(--line); padding: 32px 28px 28px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.record-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  background: var(--pill-bg); color: var(--pill-fg); padding: 7px 12px 7px 10px; border-radius: 999px;
+}
+.pill svg { width: 14px; height: 14px; }
+.pill.miss { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.sample-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.who-label { font-family: var(--display); font-style: italic; font-size: 19px; color: var(--muted); margin: 0; line-height: 1.2; }
+.who { font-family: var(--display); font-weight: 500; font-size: clamp(32px, 6vw, 44px); line-height: 1.05; color: var(--head); margin: 6px 0 0; text-wrap: balance; overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; margin: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+.facts div { min-width: 0; }
+.facts dt { font-weight: 600; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 3px 0 0; font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.miss-title { font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1.1; color: var(--head); margin: 0; }
+.miss-body { margin: 0; color: var(--muted); max-width: 52ch; }
+.miss-body strong { color: var(--ink); font-weight: 500; user-select: all; }
+
+.about { border-top: 1px solid var(--line); padding-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.about p { margin: 0; color: var(--muted); font-size: 14px; max-width: 60ch; }
+.about strong { color: var(--ink); font-weight: 500; }
+
+@media (max-width: 460px) {
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  button { flex: 1 1 100%; }
+  .record-inner { padding: 26px 20px 22px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .record { animation: rise 260ms ease-out; }
+  @keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <a class="wordmark" href="https://pixelsnfiles.com/">pixels<span>n</span>files<span>.</span></a>
+
+  <header>
+    <p class="eyebrow">Certificate verification</p>
+    <h1>Check a PixelsnFiles certificate</h1>
+    <p class="lede">Enter the number printed at the bottom right of the certificate. It looks like <code>PNF-C01-012</code>.</p>
+  </header>
+
+  <section aria-label="Look up a certificate">
+    <form id="lookup" novalidate>
+      <label class="sr" for="certno">Certificate number</label>
+      <input id="certno" name="certno" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="PNF-C01-000">
+      <button type="submit">Verify</button>
+    </form>
+    <p class="hint">Dashes and capitals are optional. <button type="button" class="linkish" id="trySample">Try the sample certificate</button></p>
+  </section>
+
+  <section id="result" aria-live="polite"></section>
+
+  <footer class="about">
+    <p class="eyebrow" style="margin:0">About the certificate</p>
+    <p>PixelsnFiles certificates are issued to graduates of the <strong>Remote Work Cohort</strong>, a six-week programme of brief-based client work in admin and operations, marketing and design. Each milestone is reviewed by the founder, Oigoga Aba, before a certificate is issued.</p>
+    <p>Questions about a certificate: <strong>oigoga@pixelsnfiles.com</strong></p>
+  </footer>
+</div>
+
+<script>
+/*
+  REGISTER
+  One line per certificate, copied from the certificate register sheet.
+  Remove the sample line before the page goes live.
+*/
+var REGISTER = [
+  { id: "PNF-C01-000", name: "Sample Graduate", cohort: "Cohort 01", period: "July to September 2026", issued: "2026-10-17", programme: "Remote Work Cohort", sample: true }
+];
+
+var SAMPLE_ID = "PNF-C01-000";
+
+function normalise(raw) {
+  var s = String(raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  var m = s.match(/^PNFC(\d{2})(\d{1,4})$/);
+  if (!m) return null;
+  var num = m[2].length < 3 ? ("000" + m[2]).slice(-3) : m[2];
+  return "PNF-C" + m[1] + "-" + num;
+}
+
+function findRecord(id) {
+  for (var i = 0; i < REGISTER.length; i++) if (REGISTER[i].id === id) return REGISTER[i];
+  return null;
+}
+
+function formatDate(iso) {
+  var d = new Date(iso + "T12:00:00");
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function el(tag, cls, text) {
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+
+var CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+
+function render(query) {
+  var out = document.getElementById("result");
+  out.textContent = "";
+  if (!query) return;
+
+  var id = normalise(query);
+  var rec = id ? findRecord(id) : null;
+
+  var card = el("div", "record");
+  var inner = el("div", "record-inner");
+  card.appendChild(inner);
+
+  if (rec) {
+    var top = el("div", "record-top");
+    var pill = el("span", "pill");
+    pill.innerHTML = CHECK + "<span>Verified</span>";
+    top.appendChild(pill);
+    if (rec.sample) top.appendChild(el("span", "sample-tag", "Sample record"));
+    inner.appendChild(top);
+
+    var who = el("div");
+    who.appendChild(el("p", "who-label", "Issued to"));
+    who.appendChild(el("p", "who", rec.name));
+    inner.appendChild(who);
+
+    var dl = el("dl", "facts");
+    [["Programme", rec.programme], ["Cohort", rec.cohort + ", " + rec.period], ["Date issued", formatDate(rec.issued)], ["Certificate no.", rec.id]]
+      .forEach(function (f) {
+        var d = el("div");
+        d.appendChild(el("dt", null, f[0]));
+        d.appendChild(el("dd", null, f[1]));
+        dl.appendChild(d);
+      });
+    inner.appendChild(dl);
+  } else {
+    var top2 = el("div", "record-top");
+    top2.appendChild(el("span", "pill miss", "No match"));
+    inner.appendChild(top2);
+    inner.appendChild(el("p", "miss-title", id ? "We have no certificate numbered " + id : "That doesn’t look like a certificate number"));
+    var body = el("p", "miss-body");
+    body.innerHTML = id
+      ? "Check the number against the certificate and try again. If it still doesn’t match, email <strong>oigoga@pixelsnfiles.com</strong> with the holder’s name and we’ll confirm it by hand."
+      : "Certificate numbers start with PNF, then the cohort and a three-digit number, for example <strong>PNF-C01-012</strong>.";
+    inner.appendChild(body);
+  }
+
+  out.appendChild(card);
+}
+
+function idFromUrl() {
+  try {
+    var q = new URLSearchParams(location.search).get("id");
+    if (q) return q;
+  } catch (e) {}
+  var h = (location.hash || "").replace(/^#/, "");
+  return h || "";
+}
+
+document.getElementById("lookup").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var v = document.getElementById("certno").value;
+  var id = normalise(v);
+  if (id) document.getElementById("certno").value = id;
+  render(v.trim());
+});
+
+document.getElementById("trySample").addEventListener("click", function () {
+  document.getElementById("certno").value = SAMPLE_ID;
+  render(SAMPLE_ID);
+});
+
+(function start() {
+  var fromUrl = idFromUrl();
+  var initial = fromUrl || (findRecord(SAMPLE_ID) ? SAMPLE_ID : "");
+  if (initial) {
+    var id = normalise(initial);
+    document.getElementById("certno").value = id || initial;
+    render(initial);
+  }
+})();
+</script>
+
+</body>
+</html>

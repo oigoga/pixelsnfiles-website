@@ -1,0 +1,12 @@
+{
+  "name": "pixelsnfiles-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "pixelsnfiles.com: main site, verify, cohort and full track pages",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2"
+  }
+}

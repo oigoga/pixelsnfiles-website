@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /cohort/stats.html
+Disallow: /api/
+
+Sitemap: https://pixelsnfiles.com/sitemap.xml

@@ -1,0 +1,102 @@
+# pixelsnfiles.com: one Netlify site, several pages.
+#
+#   pixelsnfiles.com/            site/index.html        (home)
+#   pixelsnfiles.com/verify/     site/verify/           also verify.pixelsnfiles.com
+#   pixelsnfiles.com/cohort/     site/cohort/           also cohort.pixelsnfiles.com
+#   pixelsnfiles.com/fulltrack/  site/fulltrack/        also fulltrack.pixelsnfiles.com
+#
+# Each subdomain must be added as a domain alias on this Netlify site and have a
+# CNAME record pointing to pixelsnfiles.netlify.app. See README.md.
+#
+# To add a new page: create site/<name>/index.html, then copy one of the
+# subdomain blocks below if it should have its own subdomain too.
+#
+# Rules are checked top to bottom and the first match wins, so order matters.
+
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+# Cohort analytics (cookie-free pageview + click counts), reachable from every host.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
+
+# ---------- verify.pixelsnfiles.com ----------
+# Shared images (favicon) live at the site root.
+[[redirects]]
+  from = "https://verify.pixelsnfiles.com/images/*"
+  to = "/images/:splat"
+  status = 200
+  force = true
+
+# Links written as /verify/... keep working on the subdomain.
+[[redirects]]
+  from = "https://verify.pixelsnfiles.com/verify/*"
+  to = "/verify/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://verify.pixelsnfiles.com/*"
+  to = "/verify/:splat"
+  status = 200
+  force = true
+
+# ---------- cohort.pixelsnfiles.com ----------
+[[redirects]]
+  from = "https://cohort.pixelsnfiles.com/images/*"
+  to = "/images/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://cohort.pixelsnfiles.com/cohort/*"
+  to = "/cohort/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://cohort.pixelsnfiles.com/*"
+  to = "/cohort/:splat"
+  status = 200
+  force = true
+
+# ---------- fulltrack.pixelsnfiles.com ----------
+[[redirects]]
+  from = "https://fulltrack.pixelsnfiles.com/images/*"
+  to = "/images/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://fulltrack.pixelsnfiles.com/fulltrack/*"
+  to = "/fulltrack/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://fulltrack.pixelsnfiles.com/*"
+  to = "/fulltrack/:splat"
+  status = 200
+  force = true
+
+# ---------- short links on the main domain ----------
+[[redirects]]
+  from = "/full-track"
+  to = "/fulltrack/"
+  status = 301
+
+# ---------- not found ----------
+# The cohort keeps its own 404 page. Everything else falls back to site/404.html.
+[[redirects]]
+  from = "/cohort/*"
+  to = "/cohort/404.html"
+  status = 404
+
+[[headers]]
+  for = "/cohort/stats.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"

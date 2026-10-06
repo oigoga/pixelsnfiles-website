@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales page stats — PixelsnFiles</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/cohort/favicon-32.png" sizes="32x32" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#16324F;--butter:#FBF3DC;--honey:#FFB81C;--cream:#FFFDF4;--butter-deep:#F4E6C2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--butter);color:var(--navy);font-family:'Poppins',sans-serif;padding:40px 20px 80px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-family:'Cormorant Garamond',serif;font-size:36px;margin-bottom:6px}
+.sub{font-size:13px;opacity:.65;margin-bottom:34px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:34px}
+.card{background:var(--cream);border:2px solid var(--navy);border-radius:16px;padding:20px 22px}
+.card .num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:40px;line-height:1}
+.card .lbl{font-size:12px;font-weight:600;opacity:.7;margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+h2{font-family:'Cormorant Garamond',serif;font-size:22px;margin:0 0 14px}
+.section{background:var(--cream);border:2px solid var(--navy);border-radius:16px;padding:22px 24px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:9px 4px;border-bottom:1px solid var(--butter-deep)}
+td:last-child{text-align:right;font-weight:700}
+.bars{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:6px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;max-width:34px;background:var(--honey);border:2px solid var(--navy);border-radius:6px 6px 0 0;min-height:2px}
+.bar-lbl{font-size:10px;opacity:.6;white-space:nowrap}
+.bar-val{font-size:11px;font-weight:700}
+.empty{opacity:.6;font-size:13px}
+.err{color:#b23b3b;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sales page stats</h1>
+  <div class="sub" id="generated">Loading…</div>
+
+  <div class="grid">
+    <div class="card"><div class="num" id="totalViews">–</div><div class="lbl">Total pageviews</div></div>
+    <div class="card"><div class="num" id="totalClicks">–</div><div class="lbl">Total CTA clicks</div></div>
+    <div class="card"><div class="num" id="todayViews">–</div><div class="lbl">Pageviews today</div></div>
+  </div>
+
+  <div class="section">
+    <h2>Last 7 days — pageviews</h2>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <div class="section">
+    <h2>Clicks by button</h2>
+    <table id="clickTable"><tbody></tbody></table>
+  </div>
+</div>
+
+<script>
+var LABELS = {
+  reserve_seat: "Reserve my seat (hero)",
+  pay_full_hero: "Pay in full (hero)",
+  pay_full: "Pay in full (pricing)",
+  pay_instalments: "Pay in instalments (pricing)",
+  clarity_30: "Clarity Session — 30 min",
+  clarity_60: "Clarity Session — 60 min",
+  whatsapp_support: "WhatsApp — Support",
+  whatsapp_goga: "WhatsApp — Goga",
+  join_footer: "Join the Cohort (footer)",
+  join_header: "Join the Cohort (header)"
+};
+
+fetch('/api/stats').then(function(r){
+  if(!r.ok) throw new Error('Request failed: ' + r.status);
+  return r.json();
+}).then(function(data){
+  document.getElementById('generated').textContent = 'Updated ' + new Date(data.generatedAt).toLocaleString();
+  document.getElementById('totalViews').textContent = data.totals.pageviews;
+
+  var clickTotal = 0;
+  Object.keys(data.totals.clicks).forEach(function(k){ clickTotal += data.totals.clicks[k]; });
+  document.getElementById('totalClicks').textContent = clickTotal;
+
+  var today = data.last7[data.last7.length - 1];
+  document.getElementById('todayViews').textContent = today ? today.pageviews : 0;
+
+  var max = Math.max.apply(null, data.last7.map(function(d){ return d.pageviews; }).concat([1]));
+  var barsEl = document.getElementById('bars');
+  data.last7.forEach(function(d){
+    var h = Math.max(2, Math.round((d.pageviews / max) * 100));
+    var col = document.createElement('div');
+    col.className = 'bar-col';
+    var dayLabel = new Date(d.date + 'T00:00:00Z').toLocaleDateString(undefined, {weekday:'short'});
+    col.innerHTML = '<span class="bar-val">' + d.pageviews + '</span>' +
+      '<div class="bar" style="height:' + h + '%"></div>' +
+      '<span class="bar-lbl">' + dayLabel + '</span>';
+    barsEl.appendChild(col);
+  });
+
+  var tbody = document.querySelector('#clickTable tbody');
+  var entries = Object.keys(data.totals.clicks).map(function(k){
+    return [LABELS[k] || k, data.totals.clicks[k]];
+  }).sort(function(a,b){ return b[1]-a[1]; });
+
+  if(!entries.length){
+    tbody.innerHTML = '<tr><td class="empty" colspan="2">No clicks tracked yet.</td></tr>';
+  } else {
+    entries.forEach(function(e){
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + e[0] + '</td><td>' + e[1] + '</td>';
+      tbody.appendChild(tr);
+    });
+  }
+}).catch(function(err){
+  document.getElementById('generated').innerHTML = '<span class="err">Could not load stats: ' + err.message + '</span>';
+});
+</script>
+</body>
+</html>
